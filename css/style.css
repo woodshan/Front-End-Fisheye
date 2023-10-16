@@ -19,6 +19,10 @@ h1 {
     margin-right: 100px;
 }
 
+a {
+    text-decoration: none;
+}
+
 .logo {
     height: 50px;
     margin-left: 100px;
@@ -42,9 +46,36 @@ h1 {
 .photographer_section article h2 {
     color: #D3573C;
     font-size: 36px;
+    margin-bottom: 5px;
 }
 
 .photographer_section article img {
     height: 200px;
     width: 200px;
+    border-radius: 100px;
+    object-fit: cover;
+}
+
+/* MODIFICATION */
+.photographer_section article a {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.photographer_section article h3 {
+    color: #901C1C;
+    font-size: 13px;
+    margin:0;
+}
+
+.description {
+    font-size: 10px;
+    margin: 5px;
+}
+
+.price {
+    font-size: 9px;
+    margin: 0;
+    color: #757575;
 }
