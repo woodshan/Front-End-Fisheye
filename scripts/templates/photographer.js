@@ -1,39 +1,41 @@
-function photographerTemplate(data) {
-    const { name, id, city, country, tagline, price, portrait} = data;
+export class photographerTemplate {
+  constructor(photographer) {
+    this._photographer = photographer;
+  }
 
-    const picture = `assets/photographers/${portrait}`;
+  createUserCardDOM() {
+    console.log(this._photographer)
+    const picture = `assets/photographers/${this._photographer._portrait}`;
 
-    function getUserCardDOM() {
-        const article = document.createElement( 'article' );
-        const link = document.createElement( 'a' );
-        const img = document.createElement( 'img' );
-        const h2 = document.createElement( 'h2' );
-        const location = document.createElement("h3");
-        const description = document.createElement("p");
-        const pricePerDay = document.createElement("p");
+    const article = document.createElement("article");
+    const link = document.createElement("a");
+    const img = document.createElement("img");
+    const h2 = document.createElement("h2");
+    const location = document.createElement("h3");
+    const description = document.createElement("p");
+    const pricePerDay = document.createElement("p");
 
-        link.setAttribute("aria-label", name);
-        link.setAttribute("href", `photographer.html?id=${id}`);
-        img.setAttribute("src", picture);
-        img.setAttribute("alt", "");
+    link.setAttribute("aria-label", this._photographer._name);
+    link.setAttribute("href", `photographer.html?id=${this._photographer._id}`);
+    img.setAttribute("src", picture);
+    img.setAttribute("alt", "");
 
-        description.classList.add("description");
-        pricePerDay.classList.add("price");
+    description.classList.add("description");
+    pricePerDay.classList.add("price");
 
-        h2.textContent = name;
-        location.textContent = `${city}, ${country}`;
-        description.textContent = tagline;
-        pricePerDay.textContent = `${price}€/jour`
+    h2.textContent = this._photographer._name;
+    location.textContent = `${this._photographer._city}, ${this._photographer._country}`;
+    description.textContent = this._photographer._tagline;
+    pricePerDay.textContent = `${this._photographer._price}€/jour`;
 
-        article.appendChild(link);
-        link.appendChild(img);
-        link.appendChild(h2);
-        article.appendChild(location);
-        article.appendChild(description);
-        article.appendChild(pricePerDay);
+    article.appendChild(link);
+    link.appendChild(img);
+    link.appendChild(h2);
+    article.appendChild(location);
+    article.appendChild(description);
+    article.appendChild(pricePerDay);
 
-        return (article);
-    }
-
-    return { name, picture, getUserCardDOM }
+    return article;
+  }
 }
+

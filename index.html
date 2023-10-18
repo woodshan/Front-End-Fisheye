@@ -10,23 +10,26 @@
 </head>
 
 <body>
-  <header>
-    <nav>
-      <a href="index.html" aria-label="Lien vers la page d'accueil">
+  <header role="banner">
+    <nav role=”navigation”>
+      <a href="index.html" aria-label="Lien vers la page d'accueil" aria-current=”page”>
         <img src="assets/images/logo.png" class="logo" alt="fisheye logo" />
       </a>
     </nav>
-    <nav>
-      <a href="photographer.html" aria-label="Lien vers la page des photographes">
-        <h1>Nos photographes</h1>
-      </a>
-    </nav>  
+    <h1>Nos photographes</h1>
   </header>
   <main id="main">
-    <div class="photographer_section"></div>
+    <section class="photographer_section"></section>
   </main>
-  <script src="scripts/templates/photographer.js"></script>
-  <script src="scripts/pages/index.js"></script>
+
+  <!-- Template -->
+  <script src="scripts/templates/photographer.js" type="module"></script>
+
+  <!-- Pages -->
+  <script src="scripts/pages/index.js" type="module"></script>
+
+  <!-- API -->
+  <script src="scripts/api/api.js" type="module"></script>
 </body>
 
 </html>
