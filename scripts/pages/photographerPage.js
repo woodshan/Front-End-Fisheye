@@ -1,6 +1,7 @@
 import Api from "../api/api.js";
 import { Photographer } from "../models/Photographer.js";
 import { PhotographerTemplate } from "../templates/photographerCard.js";
+import { Media } from "../models/Media.js";
 import { MediasFactory } from "../factories/MediasFactory.js";
 import { MediaCard } from "../templates/mediaCard.js";
 
@@ -26,11 +27,12 @@ class PhotographerPage {
         photographerTemplate.createPhotographerHeader(this.$photographerHeader)
       }
     });
+  
+    
 
     mediaData.filter((media) => {
       if (media.photographerId === parseInt(this._id)) {
-        // console.log("Media correspondant à l'id du photographe");
-        const mediaFactory = new MediasFactory(media, "image");
+        const mediaFactory = new MediasFactory(media, Object.keys(media)[3]);
         const mediaCard = new MediaCard(mediaFactory);
         this.$mediaSection.appendChild(mediaCard.createMediaCard())
       }

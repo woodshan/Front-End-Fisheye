@@ -4,7 +4,6 @@ export class Media {
         this._photographerId = data.photographerId
         this._title = data.title 
         this._media = data.image ? data.image : data.video 
-        this._type = Object.keys(data)[3]
         this._likes = data.likes 
         this._date = data.date 
         this._price = data.price
@@ -22,12 +21,8 @@ export class Media {
         return this._title
     }
 
-    get picture() {
+    get src() {
         return `/assets/medias/${this._photographerId}/${this._media}`
-    }
-
-    get type() {
-        return this._type
     }
 
     get likes() {

@@ -95,9 +95,9 @@ form input {
     font-weight: 400;
 }
 
-.photograph-header h2 {
+.photograph-header h2, .media-section p {
     color: #901C1C;
-    font-size: 1.5em;
+    font-size: 1.2em;
     margin:0;
     font-weight: 400;
 }
@@ -112,4 +112,37 @@ form input {
     border-radius: 100px;   
     object-fit: cover;
     overflow-clip-margin: unset;
+}
+
+.media-section {
+    margin: 80px 100px;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.media-section article {
+    margin: 20px 0;
+}
+
+.media-section img, .media-section video {
+    width: 350px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 2%;
+    overflow-clip-margin: unset;
+
+}
+
+.media-section div {
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.media-section i {
+    cursor: pointer;
+    font-size: 1.2em;
+    color: #901C1C;
+    margin-left: 5px;
 }
