@@ -1,3 +1,6 @@
+/**
+ * Fetch datas
+ */
 export default class Api {
     constructor(url) {
         this._url = url

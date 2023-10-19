@@ -78,12 +78,12 @@ ul {
     font-weight: 400;
 }
 
-.description {
+.photographer_section .description {
     font-size: 0.9em;
     margin: 5px;
 }
 
-.price {
+.photographer_section .price {
     font-size: 0.8em;
     margin: 0;
     color: #757575;

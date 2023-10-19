@@ -1,12 +1,12 @@
-export class photographerTemplate {
+/**
+ * Create photographer card from photographer Data
+ */
+export class PhotographerTemplate {
   constructor(photographer) {
     this._photographer = photographer;
   }
 
   createUserCardDOM() {
-    console.log(this._photographer)
-    const picture = `assets/photographers/${this._photographer._portrait}`;
-
     const article = document.createElement("article");
     const link = document.createElement("a");
     const img = document.createElement("img");
@@ -17,7 +17,7 @@ export class photographerTemplate {
 
     link.setAttribute("aria-label", this._photographer._name);
     link.setAttribute("href", `photographer.html?id=${this._photographer._id}`);
-    img.setAttribute("src", picture);
+    img.setAttribute("src", this._photographer.picture);
     img.setAttribute("alt", "");
 
     description.classList.add("description");
@@ -36,6 +36,33 @@ export class photographerTemplate {
     article.appendChild(pricePerDay);
 
     return article;
+  }
+
+  createPhotographerHeader(section) {
+    const descriptionContainer = document.createElement("div");
+    const name = document.createElement("h1");
+    const location = document.createElement("h2");
+    const description = document.createElement("p");
+    const btn = document.createElement("button");
+    const img = document.createElement("img");
+
+    btn.setAttribute("onClick", "displayModal()");
+    img.setAttribute("src", this._photographer.picture);
+    img.setAttribute("alt", "");
+
+    btn.classList.add("contact_button");
+
+    name.textContent = this._photographer._name;
+    location.textContent = `${this._photographer._city}, ${this._photographer._country}`;
+    description.textContent = this._photographer._tagline;
+    btn.textContent = "Contactez-moi";
+
+    section.appendChild(descriptionContainer)
+    descriptionContainer.appendChild(name);
+    descriptionContainer.appendChild(location);
+    descriptionContainer.appendChild(description);
+    section.appendChild(btn);
+    section.appendChild(img);
   }
 }
 

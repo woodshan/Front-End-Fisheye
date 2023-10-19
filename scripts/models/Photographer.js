@@ -1,3 +1,7 @@
+/**
+ * Constructor pattern 
+ * Get data
+ */
 export class Photographer {
     constructor(data) {
         this._name = data.name
@@ -33,7 +37,7 @@ export class Photographer {
         return this._price
     }
 
-    get portrait() {
-        return this._portrait
+    get picture() {
+        return `/assets/photographers/${this._portrait}`
     }
 }

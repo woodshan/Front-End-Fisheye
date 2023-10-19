@@ -1,7 +1,10 @@
 import Api from "../api/api.js";
-import { photographerTemplate } from "../templates/photographer.js";
+import { PhotographerTemplate } from "../templates/photographerCard.js";
 import { Photographer } from "../models/Photographer.js";
 
+/**
+ * Display Home page from photographers data
+ */
 class Index {
   constructor() {
     this.$photographersSection = document.querySelector(
@@ -17,7 +20,7 @@ class Index {
 
     photographers.forEach((photographer) => {
       const photographerModel = new Photographer(photographer);
-      const userCardDOM = new photographerTemplate(photographerModel);
+      const userCardDOM = new PhotographerTemplate(photographerModel);
 
       this.$photographersSection.appendChild(userCardDOM.createUserCardDOM());
     });
