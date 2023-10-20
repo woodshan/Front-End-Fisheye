@@ -116,13 +116,79 @@ form input {
 
 .media-section {
     margin: 80px 100px;
+}
+
+.media-section .sort {
     display:flex;
-    flex-wrap: wrap;
+    /* gap: 30px; */
+    position:relative;
+}
+
+.media-section .sort-by {
+    font-size: 1em;
+    color:black;
+    font-weight: 700;
+}
+
+.media-section .select {
+    position:absolute;
+    width: 170px;
+    background-color: #901C1C;
+    border-radius: 5px;
+    padding: 0 10px;
+    left: 100px;
+    top: -10px;
+}
+
+.media-section .hidden {
+    display:none;
+}
+
+.media-section button {
+    background-color:transparent;
+    color:white;
+    border: none;
+    outline:none;
+    padding: 15px 5px;
+    font-weight: 700;
+    font-size: 0.9em;
+    display:flex;
+    align-items: center;
     justify-content: space-between;
+    width: 100%;
+    cursor:pointer;
+}
+
+.media-section .hidden button:nth-child(1) {
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+}
+
+.arrow-up::before, .arrow-down::before {
+    color:white;
+}
+
+.arrow-up {
+    transform:rotateZ(0);
+}
+
+.arrow-down {
+    transform:rotateZ(180deg);
+}
+
+.wrapper {
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 75px;
+    margin-top: 20px;
+    /* display:flex;
+    flex-wrap: wrap;
+    justify-content: space-between; */
 }
 
 .media-section article {
     margin: 20px 0;
+    width: 350px;
 }
 
 .media-section img, .media-section video {
@@ -131,10 +197,9 @@ form input {
     object-fit: cover;
     border-radius: 2%;
     overflow-clip-margin: unset;
-
 }
 
-.media-section div {
+.media-section .container-like, .media-section .container-desc {
     display:flex;
     align-items: center;
     justify-content: space-between;
