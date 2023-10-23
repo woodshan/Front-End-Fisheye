@@ -1,16 +1,17 @@
 import { Media } from "../models/Media.js";
 
 export class Video extends Media {
-    constructor(data) {
+    constructor(data, photographer) {
         super(data)
+        this._photographer = photographer.split(" ")[0]
+        this._src = `/assets/medias/${this._photographer}/${this._media}`
     }
 
-    get miniature() {
+    get thumbnail() {
         const video = document.createElement("video");
         const source = document.createElement("source");
 
-        // source.setAttribute("src", this.data.src)
-        source.setAttribute("src", this.src)
+        source.setAttribute("src", this._src)
         source.setAttribute("type", "video/mp4")
 
         video.appendChild(source);

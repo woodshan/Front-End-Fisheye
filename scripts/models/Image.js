@@ -1,14 +1,16 @@
 import { Media } from "../models/Media.js";
 
 export class Image extends Media{
-    constructor(data) {
+    constructor(data, photographer) {
         super(data);
+        this._photographer = photographer.split(" ")[0]
+        this._src = `/assets/medias/${this._photographer}/${this._media}`
     }
 
-    get miniature() {
+    get thumbnail() {
         const img = document.createElement("img");
 
-        img.setAttribute("src", this.src);
+        img.setAttribute("src", this._src);
         img.setAttribute("alt", this.title);
 
         return img

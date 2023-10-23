@@ -1,14 +1,14 @@
-import { Media } from "../models/Media.js";
 import { Image } from "../models/Image.js";
 import { Video } from "../models/Video.js";
 
 export class MediasFactory {
-    constructor(data, type) {
-        if(type === "image") {
-            // console.log(data)
-            return new Image(data)
-        } else if(type === "video") {
-            return new Video(data)
+    constructor(data, photographer) {
+        this._type = Object.keys(data)[3]
+
+        if(this._type === "image") {
+            return new Image(data, photographer)
+        } else if(this._type === "video") {
+            return new Video(data, photographer)
         } else {
             throw "Unknown format"
         }

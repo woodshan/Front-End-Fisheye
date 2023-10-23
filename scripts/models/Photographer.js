@@ -40,4 +40,8 @@ export class Photographer {
     get picture() {
         return `/assets/photographers/${this._portrait}`
     }
+
+    // get medias() {
+    //     return `/assets/medias/${this._name}`
+    // }
 }

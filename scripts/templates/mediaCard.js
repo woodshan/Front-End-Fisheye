@@ -24,7 +24,7 @@ export class MediaCard {
         numberLikes.innerText = this._media.likes;
 
         article.appendChild(link); 
-        link.appendChild(this._media.miniature);
+        link.appendChild(this._media.thumbnail);
         article.appendChild(container);
         container.appendChild(title);
         container.appendChild(containerLike);

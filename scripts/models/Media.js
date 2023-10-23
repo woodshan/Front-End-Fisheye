@@ -1,5 +1,5 @@
 export class Media {
-    constructor(data) {
+    constructor(data, photographer) {
         this._id = data.id
         this._photographerId = data.photographerId
         this._title = data.title 
@@ -7,6 +7,8 @@ export class Media {
         this._likes = data.likes 
         this._date = data.date 
         this._price = data.price
+        this._photographer = photographer
+        // console.log(photographer)
     }
 
     get id() {
@@ -21,9 +23,12 @@ export class Media {
         return this._title
     }
 
-    get src() {
-        return `/assets/medias/${this._photographerId}/${this._media}`
-    }
+    // get src() {
+    //     return `/assets/medias/${this._photographerId}/${this._media}`
+    // }
+    // get src() {
+    //     return `/assets/medias/${this._photographer}/${this._media}`
+    // }
 
     get likes() {
         return this._likes
@@ -35,5 +40,9 @@ export class Media {
 
     get price() {
         return this._price
+    }
+
+    get photographer() {
+        return this._photographer
     }
 }
