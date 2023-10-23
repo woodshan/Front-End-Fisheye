@@ -43,25 +43,25 @@ export class PhotographerTemplate {
     const name = document.createElement("h1");
     const location = document.createElement("h2");
     const description = document.createElement("p");
-    const btn = document.createElement("button");
+    // const btn = document.createElement("button");
     const img = document.createElement("img");
 
-    btn.setAttribute("onClick", "displayModal()");
+    // btn.setAttribute("onClick", "displayModal()");
     img.setAttribute("src", this._photographer.picture);
     img.setAttribute("alt", "");
 
-    btn.classList.add("contact_button");
+    // btn.classList.add("contact_button");
 
     name.textContent = this._photographer._name;
     location.textContent = `${this._photographer._city}, ${this._photographer._country}`;
     description.textContent = this._photographer._tagline;
-    btn.textContent = "Contactez-moi";
+    // btn.textContent = "Contactez-moi";
 
     section.appendChild(descriptionContainer)
     descriptionContainer.appendChild(name);
     descriptionContainer.appendChild(location);
     descriptionContainer.appendChild(description);
-    section.appendChild(btn);
+    // section.appendChild(btn);
     section.appendChild(img);
   }
 }

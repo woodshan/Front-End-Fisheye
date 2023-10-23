@@ -4,6 +4,7 @@ import { PhotographerTemplate } from "../templates/photographerCard.js";
 import { MediasFactory } from "../factories/MediasFactory.js";
 import { MediaCard } from "../templates/mediaCard.js";
 import { InfoBox } from "../templates/infoBox.js";
+import { ContactForm } from "../utils/contactForm.js";
 
 class PhotographerPage {
   constructor() {
@@ -25,7 +26,7 @@ class PhotographerPage {
     const photographerTemplate = new PhotographerTemplate(photographer);
     photographerTemplate.createPhotographerHeader(this.$photographerHeader);
 
-    const photographerName = decodeURIComponent(photographer.name);
+    const photographerName = photographer.name;
 
     mediaData.forEach((media) => {
       // console.log(photographerName)
@@ -36,6 +37,8 @@ class PhotographerPage {
 
     const infoBox = new InfoBox(this._id, data);
     this.$main.appendChild(infoBox.createRateCard());
+
+    new ContactForm(photographerName);
   }
 }
 
