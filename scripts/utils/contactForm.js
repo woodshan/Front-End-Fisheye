@@ -3,7 +3,7 @@ export class ContactForm {
         this._name = name
 
         this.$modalSection = document.getElementById("contact_modal");
-        this.$modalTitle = document.querySelector(".modal h2");
+        this.$modalTitle = document.querySelector(".modal h1");
         this.$modalOpen = document.querySelector(".contact_button");
         this.$modalClose = document.getElementById("close_button");
         this.$modalSubmit = document.querySelector(".modal .contact_button");
@@ -35,15 +35,32 @@ export class ContactForm {
 
     sendDatas(event) {
         event.preventDefault();
-        const firstName = document.getElementById("first-name").value;
-        const lastName = document.getElementById("last-name").value;
-        const email = document.getElementById("email").value;
-        const message = document.getElementById("message").value;
-        console.log(`
-        Prénom : ${firstName},
-        Nom: ${lastName},
-        Email: ${email},
-        Message: ${message}
-        `)
+
+        let inputs = document.querySelectorAll(".modal input");
+        let msg = document.getElementById("message").value;
+        let datas = [];
+        let checkForm;
+
+        inputs.forEach((input) => {
+            if(input.value == "" || msg == "") {
+                checkForm = false;
+            } else {
+                checkForm = true;
+                datas.push(input.value);
+            }
+        });
+
+        if(checkForm) {
+            datas.push(msg);
+            console.log(`
+                Prénom : ${datas[0]},
+                Nom: ${datas[1]},
+                Email: ${datas[2]},
+                Message: ${datas[3]}
+            `)
+        } else {
+            console.log("Veuillez remplir tous les champs.")
+        }
+        
     }
 }
