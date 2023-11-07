@@ -2,6 +2,7 @@ export class ContactForm {
     constructor(name) {
         this._name = name
 
+        this.$container = document.querySelector(".container");
         this.$modalSection = document.getElementById("contact_modal");
         this.$modalTitle = document.querySelector(".modal h1");
         this.$modalOpen = document.querySelector(".contact_button");
@@ -26,11 +27,15 @@ export class ContactForm {
     displayModal() {
         this.$modalSection.classList.remove("hidden-modal");
         document.querySelector("body").style.overflowY = "hidden";
+        this.$container.setAttribute("aria-hidden", "true");
+        this.$modalSection.setAttribute("aria-hidden", "false");
     }
     
     closeModal() {
         this.$modalSection.classList.add("hidden-modal");
         document.querySelector("body").style.overflowY = "auto";
+        this.$container.setAttribute("aria-hidden", "false");
+        this.$modalSection.setAttribute("aria-hidden", "true");
     }
 
     sendDatas(event) {
@@ -58,6 +63,9 @@ export class ContactForm {
                 Email: ${datas[2]},
                 Message: ${datas[3]}
             `)
+
+            this.closeModal()
+            
         } else {
             console.log("Veuillez remplir tous les champs.")
         }

@@ -11,33 +11,35 @@
 </head>
 
 <body>
-  <header role="banner">
-    <nav role=”navigation”>
-      <a href="index.html" aria-label="Lien vers la page d'accueil">
-        <img src="assets/images/logo.png" class="logo" alt="fisheye logo" />
-      </a>
-    </nav>
-  </header>
-  <main id="main">
-    <section class="photograph-header">
-      <button class="contact_button">Contactez-moi</button>
-    </section>
-    <section class="media-section">
-      <div class="sort">
-        <p class="sort-by">Trier par</p>
-        <div class="select"><button value="Popularité">Popularité<i
-              class="fa-solid fa-chevron-down arrow-up"></i></button>
-          <div class="hidden"><button value="Date">Date</button><button value="Titre">Titre</button></div>
+  <div class="container" aria-hidden="false">
+    <header role="banner">
+      <nav role=”navigation”>
+        <a href="index.html" aria-label="Lien vers la page d'accueil">
+          <img src="assets/images/logo.png" class="logo" alt="fisheye logo" />
+        </a>
+      </nav>
+    </header>
+    <main id="main">
+      <section class="photograph-header">
+        <button class="contact_button">Contactez-moi</button>
+      </section>
+      <section class="media-section">
+        <div class="sort">
+          <p class="sort-by">Trier par</p>
+          <div class="select"><button value="Popularité">Popularité<i
+                class="fa-solid fa-chevron-down arrow-up"></i></button>
+            <div class="hidden"><button value="Date">Date</button><button value="Titre">Titre</button></div>
+          </div>
         </div>
-      </div>
-      <div class="wrapper"></div>
-    </section>
-  </main>
+        <div class="wrapper"></div>
+      </section>
+    </main>
+  </div>
   <section id="contact_modal" class="hidden-modal">
-    <div class="modal">
+    <div class="modal" aria-hidden="true" role="dialog">
       <header>
         <h1>Contactez-moi</h1>
-        <img src="assets/icons/close.svg" id="close_button"  />
+        <img src="assets/icons/close.svg" id="close_button" role="button" tabindex="0" />
       </header>
       <form>
         <div>
@@ -47,7 +49,7 @@
           <input type="text" id="last-name" placeholder="Écrivez votre nom" />
           <label for="email">Email</label>
           <input type="email" id="email" placeholder="Écrivez votre email"/>
-          <label for="message">Message</label>
+          <label for="message">Votre message</label>
           <textarea id="message" placeholder="Écrivez votre Message"></textarea>
         </div>
         <button class="contact_button">Envoyer</button>
