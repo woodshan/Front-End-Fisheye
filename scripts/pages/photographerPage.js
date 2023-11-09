@@ -29,7 +29,6 @@ class PhotographerPage {
     const photographerName = photographer.name;
 
     mediaData.forEach((media) => {
-      // console.log(photographerName)
       const mediaFactory = new MediasFactory(media, photographerName);
       const mediaCard = new MediaCard(mediaFactory);
       this.$mediaWrapper.appendChild(mediaCard.createMediaCard())
@@ -38,7 +37,7 @@ class PhotographerPage {
     const infoBox = new InfoBox(this._id, data);
     this.$main.appendChild(infoBox.createRateCard());
 
-    new ContactForm(photographerName);
+    new ContactForm(photographer);
   }
 }
 

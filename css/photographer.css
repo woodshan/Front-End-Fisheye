@@ -97,6 +97,60 @@ form textarea {
     font-size: 1.2em;
 }
 
+/* LIGHT BOX */
+#light_box {
+    position:fixed;
+    top: 0;
+    width: 100%;
+    /* height: 100%; */
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    
+    flex-direction: column;
+    padding: 15px 0;
+
+    background-color: rgba(255, 255, 255, 0.506);
+    overflow-y: auto;
+}
+
+#close_light_box {
+    position: absolute;
+    top: 15px;
+    right: 350px;
+    cursor:pointer;
+}
+
+.img_box_container {
+    display:flex;
+    align-items: center;
+}
+
+.img_light_box {
+    width: 1050px;
+    height: 850px;
+    object-fit: cover;
+    border-radius: 2%;
+}
+
+#light_box .fa-solid {
+    color: #901C1C;
+    font-size: 5em;
+    cursor: pointer;
+}
+
+#light_box .fa-chevron-right {
+    margin-left: 50px;
+}
+
+#light_box .fa-chevron-left {
+    margin-right: 50px;
+}
+
+#light_box h1 {
+    margin: 0;
+}
+
 /* MODIFICATION */
 .photograph-header {
     background-color: #FAFAFA;
