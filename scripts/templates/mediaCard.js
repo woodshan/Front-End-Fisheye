@@ -13,7 +13,9 @@ export class MediaCard {
         const like = document.createElement("i");
 
         link.setAttribute("href", "#");
-        link.setAttribute("aria-label", "Lilac breasted roller, closeup view");
+        link.setAttribute("aria-label", this._media.title);
+        link.setAttribute("data-id", this._media._id);
+        link.setAttribute("class", "media_card");
         container.setAttribute("class", "container-desc");
         containerLike.setAttribute("class", "container-like");
         like.setAttribute("role", "button");

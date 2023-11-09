@@ -5,6 +5,7 @@ import { MediasFactory } from "../factories/MediasFactory.js";
 import { MediaCard } from "../templates/mediaCard.js";
 import { InfoBox } from "../templates/infoBox.js";
 import { ContactForm } from "../utils/contactForm.js";
+import { LightBox } from "../utils/lightBox.js";
 
 class PhotographerPage {
   constructor() {
@@ -31,13 +32,15 @@ class PhotographerPage {
     mediaData.forEach((media) => {
       const mediaFactory = new MediasFactory(media, photographerName);
       const mediaCard = new MediaCard(mediaFactory);
-      this.$mediaWrapper.appendChild(mediaCard.createMediaCard())
+      this.$mediaWrapper.appendChild(mediaCard.createMediaCard());
+      // new LightBox(mediaCard);
     });
 
     const infoBox = new InfoBox(this._id, data);
     this.$main.appendChild(infoBox.createRateCard());
 
-    new ContactForm(photographer);
+    new ContactForm(photographerName);
+    new LightBox(mediaData);
   }
 }
 
