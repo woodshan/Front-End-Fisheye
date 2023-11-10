@@ -33,14 +33,14 @@ class PhotographerPage {
       const mediaFactory = new MediasFactory(media, photographerName);
       const mediaCard = new MediaCard(mediaFactory);
       this.$mediaWrapper.appendChild(mediaCard.createMediaCard());
-      // new LightBox(mediaCard);
+      new LightBox(mediaCard);
     });
 
     const infoBox = new InfoBox(this._id, data);
     this.$main.appendChild(infoBox.createRateCard());
 
     new ContactForm(photographerName);
-    new LightBox(mediaData);
+    // new LightBox(mediaData);
   }
 }
 
