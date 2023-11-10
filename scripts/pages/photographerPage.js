@@ -29,11 +29,13 @@ class PhotographerPage {
 
     const photographerName = photographer.name;
 
+    let mediaListTest = [];
+
     mediaData.forEach((media) => {
       const mediaFactory = new MediasFactory(media, photographerName);
       const mediaCard = new MediaCard(mediaFactory);
       this.$mediaWrapper.appendChild(mediaCard.createMediaCard());
-      new LightBox(mediaCard);
+      new LightBox(mediaCard, mediaListTest);
     });
 
     const infoBox = new InfoBox(this._id, data);

@@ -80,10 +80,11 @@ import { Modal } from "../templates/modal.js";
 
 // TEST
 export class LightBox extends Modal {
-  constructor(mediaData) {
+  constructor(mediaData, list) {
     super();
     this._media = mediaData._media;
     this._currentIndex = 0;
+    this._mediaList = list;
 
     this.$modal = document.querySelector(".container_light_box");
     this.$img = this.$modal.querySelector(".img_light_box");
@@ -95,7 +96,7 @@ export class LightBox extends Modal {
     this.$btnOpen.forEach((btn) => {
       btn.addEventListener("click", (e) => {
         if(this._media.id == btn.getAttribute("data-id")) {
-          this.displayLightBox(e);
+          this.displayLightBox(e, this._media);
           this.displayModal(this.$modal);
           this._currentIndex = 0;
         }
@@ -123,27 +124,42 @@ export class LightBox extends Modal {
     });
   }
 
-  displayLightBox(e) {
+  displayLightBox(e, mediaData) {
     e.preventDefault();
     this.$modal.querySelector("h1").innerHTML = "";
 
-    this.$img.src = this._media._src;
-    this.displayTitle(this.$modal, this._media._title);
-    this.$img.setAttribute("data-id", this._media._id);
+    this.$img.src = mediaData._src;
+    this.displayTitle(this.$modal, mediaData._title);
+    this.$img.setAttribute("data-id", mediaData._id);
   }
 
   next(e) {
-    let mediaList = [];
-
-    this.$btnOpen.forEach((link) => {
-      // mediaList.push(this._media.find(media => media.id == link.getAttribute("data-id")));
-      // console.log(this._media._id)
-      if(link.getAttribute("data-id") == this._media._id) {
-        mediaList.push(this._media);
+    this.$btnOpen.forEach((btn) => {
+      if(btn.getAttribute("data-id") == this._media._id) {
+        this._mediaList.push(this._media);
       }
-    });
+    })
+    
+    if(this._media.id == this.$img.getAttribute("data-id")) {
+      this._currentIndex++
+      
+      if(this._mediaList[this._currentIndex] !== undefined) {
+        console.log(this._mediaList[this._currentIndex]._src);
+        this.displayLightBox(e, this._mediaList[this._currentIndex]);
+      }
+    }
 
-    console.log(mediaList);
+    // console.log(this._mediaList[1])
+
+
+    // if(this._mediaList[this._currentIndex] !== undefined) {
+    //   console.log(this._mediaList[this._currentIndex])
+    // }
+
+    // if(this.$img.getAttribute("data-id") == this._mediaList[this._mediaList.length-1].id) {
+    //   this._currentIndex = 0
+    // };
+    // this.displayLightBox(e, this._mediaList[this._currentIndex]);
 
     // mediaList.forEach((media) => {
     //   if(this.$img.getAttribute("data-id") == media.id) {
