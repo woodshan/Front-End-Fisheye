@@ -19,18 +19,21 @@ export class InfoBox {
         this._sumLikes = this._sumLikes.reduce((acc, curr) => acc + curr);
 
         const container = document.createElement("div");
-        const totalLikes = document.createElement("p");
+        const containerLikes = document.createElement("p");
+        const totalLikes = document.createElement("span");
         const like = document.createElement("i");
         const dailyPrice = document.createElement("p");
 
         container.setAttribute("class", "rate-container");
+        totalLikes.setAttribute("class", "total_likes");
         like.setAttribute("class", "fa-solid fa-heart");
 
         totalLikes.innerText = this._sumLikes
         dailyPrice.innerText = `${this._photographerPrice}€ / jour`
         
-        container.appendChild(totalLikes);
-        totalLikes.appendChild(like);
+        container.appendChild(containerLikes);
+        containerLikes.appendChild(totalLikes);
+        containerLikes.appendChild(like);
         container.appendChild(dailyPrice);
 
         return container

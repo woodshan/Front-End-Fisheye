@@ -23,13 +23,6 @@ export class Media {
         return this._title
     }
 
-    // get src() {
-    //     return `/assets/medias/${this._photographerId}/${this._media}`
-    // }
-    // get src() {
-    //     return `/assets/medias/${this._photographer}/${this._media}`
-    // }
-
     get likes() {
         return this._likes
     }

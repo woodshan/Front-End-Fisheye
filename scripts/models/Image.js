@@ -12,6 +12,8 @@ export class Image extends Media{
 
         img.setAttribute("src", this._src);
         img.setAttribute("alt", this.title);
+        
+        img.setAttribute("class", "img_light_box");
 
         return img
     }

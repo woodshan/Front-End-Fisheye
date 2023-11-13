@@ -11,6 +11,9 @@ export class Video extends Media {
         const video = document.createElement("video");
         const source = document.createElement("source");
 
+        video.setAttribute("class", "img_light_box");
+        video.setAttribute("controls", "true")
+
         source.setAttribute("src", this._src)
         source.setAttribute("type", "video/mp4")
 
