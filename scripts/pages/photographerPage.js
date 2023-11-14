@@ -8,6 +8,7 @@ import { ContactForm } from "../utils/contactForm.js";
 import { LightBox } from "../utils/lightBox.js";
 import { Subject } from "../likes/subject.js";
 import { Counter } from "../likes/counter.js";
+import { Sort } from "../utils/sort.js";
 
 class PhotographerPage {
   constructor() {
@@ -56,6 +57,8 @@ class PhotographerPage {
 
     new ContactForm(photographerName);
     new LightBox(mediaList);
+
+    new Sort();
   }
 }
 

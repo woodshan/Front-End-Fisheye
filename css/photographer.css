@@ -237,7 +237,7 @@ form textarea {
     width: 170px;
     background-color: #901C1C;
     border-radius: 5px;
-    padding: 0 10px;
+    /* padding: 0 10px; */
     left: 100px;
     top: -10px;
 }
@@ -251,7 +251,7 @@ form textarea {
     color:white;
     border: none;
     outline:none;
-    padding: 15px 5px;
+    padding: 15px;
     font-weight: 700;
     font-size: 0.9em;
     display:flex;
@@ -261,7 +261,7 @@ form textarea {
     cursor:pointer;
 }
 
-.media-section .hidden button:nth-child(1) {
+.select button:nth-child(2) {
     border-top: 1px solid white;
     border-bottom: 1px solid white;
 }

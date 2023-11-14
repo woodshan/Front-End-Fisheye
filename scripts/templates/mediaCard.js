@@ -20,6 +20,7 @@ export class MediaCard {
     container.setAttribute("class", "container-desc");
     containerLike.setAttribute("class", "container-like");
     like.setAttribute("role", "button");
+    like.setAttribute("tabindex", "0");
     like.setAttribute("aria-label", "Like");
     like.setAttribute("class", "fa-solid fa-heart");
 
@@ -35,23 +36,27 @@ export class MediaCard {
     containerLike.appendChild(like);
 
     like.addEventListener("click", () => {
-        this.handleLikeButton(like, numberLikes)
+      this.handleLikeButton(like, numberLikes);
     });
+
+    like.addEventListener("keydown", (e) => {
+      if(e.keyCode == 13) {
+        this.handleLikeButton(like, numberLikes);
+      }
+    })
 
     return article;
   }
 
   handleLikeButton(like, numberLikes) {
     const that = this;
-    
-    // console.log(Number(numberLikes.innerText))
 
-      if (like.classList.contains("liked")) {
-        like.classList.remove("liked");
-        that._likeSubject.fire("DEC", numberLikes);
-      } else {
-        like.classList.add("liked");
-        that._likeSubject.fire("INC", numberLikes);
-      }
+    if (like.classList.contains("liked")) {
+      like.classList.remove("liked");
+      that._likeSubject.fire("DEC", numberLikes);
+    } else {
+      like.classList.add("liked");
+      that._likeSubject.fire("INC", numberLikes);
+    }
   }
 }
