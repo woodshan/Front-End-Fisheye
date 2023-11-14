@@ -18,7 +18,7 @@ export class ContactForm extends Modal {
     });
 
     document.addEventListener("keydown", (e) => {
-      this.acessibility(this.$modal, e, this.$modalElements)
+      this.accessibility(this.$modal, e, this.$modalElements)
     });
 
     this.$modal

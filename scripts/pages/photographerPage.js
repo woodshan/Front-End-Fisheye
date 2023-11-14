@@ -2,12 +2,12 @@ import Api from "../api/api.js";
 import { Photographer } from "../models/Photographer.js";
 import { PhotographerTemplate } from "../templates/photographerCard.js";
 import { MediasFactory } from "../factories/MediasFactory.js";
-import { MediaCard } from "../templates/mediaCard.js";
+// import { MediaCard } from "../templates/mediaCard.js";
 import { InfoBox } from "../templates/infoBox.js";
 import { ContactForm } from "../utils/contactForm.js";
-import { LightBox } from "../utils/lightBox.js";
-import { Subject } from "../likes/subject.js";
-import { Counter } from "../likes/counter.js";
+// import { LightBox } from "../utils/lightBox.js";
+// import { Subject } from "../likes/subject.js";
+// import { Counter } from "../likes/counter.js";
 import { Sort } from "../utils/sort.js";
 
 class PhotographerPage {
@@ -21,15 +21,13 @@ class PhotographerPage {
     this.$mediaSection = document.querySelector(".media-section");
     this.$mediaWrapper = document.querySelector(".wrapper");
 
-    this._likeSubject = new Subject();
-    this._likeCounter = new Counter();
+    // this._likeSubject = new Subject();
+    // this._likeCounter = new Counter();
 
-    this._likeSubject.subscribe(this._likeCounter);
+    // this._likeSubject.subscribe(this._likeCounter);
   }
 
   async main() {
-    // this.$mediaWrapper.innerHTML = "";
-
     const data = await this.api.getData();
 
     const photographerData = data.photographers.find(photographer => photographer.id === this._id);
@@ -42,12 +40,12 @@ class PhotographerPage {
 
     const photographerName = photographer.name;
 
-    let mediaList = []
+    let mediaList = [];
 
     mediaData.forEach((media) => {
       const mediaFactory = new MediasFactory(media, photographerName);
-      const mediaCard = new MediaCard(mediaFactory, this._likeSubject);
-      this.$mediaWrapper.appendChild(mediaCard.createMediaCard());
+      // const mediaCard = new MediaCard(mediaFactory, this._likeSubject);
+      // this.$mediaWrapper.appendChild(mediaCard.createMediaCard());
 
       mediaList.push(mediaFactory)
     });
@@ -56,9 +54,9 @@ class PhotographerPage {
     this.$main.appendChild(infoBox.createRateCard());
 
     new ContactForm(photographerName);
-    new LightBox(mediaList);
+    // new LightBox(mediaList);
 
-    new Sort();
+    new Sort(mediaList);
   }
 }
 

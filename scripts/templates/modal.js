@@ -37,7 +37,7 @@ export class Modal {
     modal.setAttribute("aria-hidden", "true");
   }
 
-  acessibility(modal, e, modalElements) {
+  accessibility(modal, e, modalElements) {
     if (modal.getAttribute("aria-hidden") == "false") {
       if (e.keyCode == 9) {
         if (e.target === modalElements[modalElements.length - 1]) {

@@ -23,6 +23,10 @@ export class Media {
         return this._title
     }
 
+    set likes(like) {
+        this._likes = like
+    }
+    
     get likes() {
         return this._likes
     }

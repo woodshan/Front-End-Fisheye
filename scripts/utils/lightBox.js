@@ -22,7 +22,7 @@ export class LightBox extends Modal {
     });
 
     document.addEventListener("keydown", (e) => {
-      this.acessibility(this.$modal, e, this.$modalElements);
+      this.accessibility(this.$modal, e, this.$modalElements);
 
       if(e.keyCode == 39) {
         this.next(e)

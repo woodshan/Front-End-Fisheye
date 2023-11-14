@@ -58,5 +58,8 @@ export class MediaCard {
       like.classList.add("liked");
       that._likeSubject.fire("INC", numberLikes);
     }
+
+    this._media.likes = Number(numberLikes.innerText);
+    // console.log(this._media.likes);
   }
 }
