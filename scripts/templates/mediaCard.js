@@ -59,7 +59,7 @@ export class MediaCard {
       that._likeSubject.fire("INC", numberLikes);
     }
 
+    // console.log(Number(numberLikes.innerText))
     this._media.likes = Number(numberLikes.innerText);
-    // console.log(this._media.likes);
   }
 }
