@@ -13,7 +13,6 @@ export class Sort {
     this._isVisible = false;
     this._mediaList = mediaList.sort((a, b) => b._likes - a._likes);
     this._value = this.$select.querySelector("button").innerText;
-    this._oldValue = this._value;
 
     this._lastsLikedTab = [];
 
@@ -26,7 +25,6 @@ export class Sort {
 
     this.$select.addEventListener("click", (e) => {
       const oldValue = this._value;
-      this._oldValue = this._value;
 
       if (this._isVisible) {
         if (e.target.value == undefined) {
@@ -62,66 +60,24 @@ export class Sort {
     this._isVisible = true;
   }
 
+  // Organize array based on sorting
   handleSort() {
     switch (this._value) {
       case "Popularité":
         this._mediaList = this._mediaList.sort((a, b) => b._likes - a._likes);
         this.displayMediaCard();
-        // this.$mediaWrapper
-        //   .querySelectorAll(".container-like i")
-        //   .forEach((btn) => {
-        //     btn.addEventListener("click", (e) => {
-        // if (
-        //   JSON.stringify(this._mediaList) !==
-        //   JSON.stringify(
-        //     this._mediaList.sort((a, b) => b._likes - a._likes)
-        //   )
-        // ) {
-        //   this._mediaList = this._mediaList.sort(
-        //     (a, b) => b._likes - a._likes
-        //   );
-
-        //   this.displayMediaCard();
-
-        //   let card = btn.parentNode.parentNode.parentNode;
-        //   let like = this.$mediaWrapper.querySelector(
-        //     `[data-id="${card.getAttribute("data-id")}"]`
-        //   );
-        //   like.querySelector(".container-like i").classList.add("liked");
-        // }
-        //   });
-        // });
-        // console.log("Trié par Popularité");
         break;
       case "Date":
-        this._mediaList = this._mediaList.sort((a, b) => {
-          if (a._date < b._date) {
-            return 1;
-          }
-
-          if (a._date > b._date) {
-            return -1;
-          }
-
-          return 0;
-        });
+        this._mediaList = this._mediaList.sort((a, b) =>
+          a._date < b._date ? 1 : a._date > b._date ? -1 : 0
+        );
         this.displayMediaCard();
-        // console.log("Trié par Date");
         break;
       case "Titre":
-        this._mediaList = this._mediaList.sort((a, b) => {
-          if (a._title < b._title) {
-            return -1;
-          }
-
-          if (a._title > b._title) {
-            return 1;
-          }
-
-          return 0;
-        });
+        this._mediaList = this._mediaList.sort((a, b) =>
+          a._title < b._title ? -1 : a._title > b._title ? 1 : 0
+        );
         this.displayMediaCard();
-        // console.log("Trié par Titre");
         break;
       default:
         console.log("Error Unknow Value");
@@ -130,6 +86,7 @@ export class Sort {
     new LightBox(this._mediaList);
   }
 
+  // Clear all media cards & display ordered media cards
   displayMediaCard() {
     this.$mediaWrapper.innerHTML = "";
     this._mediaList.forEach((media) => {
@@ -137,122 +94,71 @@ export class Sort {
       this.$mediaWrapper.appendChild(mediaCard.createMediaCard());
     });
 
+    // Set liked class on liked elements
+    this._lastsLikedTab.forEach((id) => {
+      let like = this.$mediaWrapper.querySelector(`[data-id="${id}"]`);
+
+      like.querySelector(".container-like i").classList.add("liked");
+    });
+
+    // Save liked elements
     this.attachLikeEvents();
   }
 
   attachLikeEvents() {
-    let lastsLikedTab = [];
     this.$mediaWrapper.querySelectorAll(".container-like i").forEach((btn) => {
       btn.addEventListener("click", (e) => {
+        // set last media card clicked
         const lastArticle = btn.parentNode.parentNode.parentNode;
         const lastLike = this.$mediaWrapper.querySelector(
           `[data-id="${lastArticle.getAttribute("data-id")}"]`
         );
 
+        // Update array of liked elements
+
         if (
           !lastLike
             .querySelector(".container-like i")
             .classList.contains("liked")
         ) {
-          // console.log("Le dernier article que j'ai unliké")
-          // console.log(lastLike)
-
-          console.log(
-            "Les derniers articles que j'ai liké dans le cas du unlike"
-          );
+          // If unlike
+          // Remove unlike elements from array
           this._lastsLikedTab = this._lastsLikedTab.filter(
             (id) => id !== lastLike.getAttribute("data-id")
           );
-          console.log(this._lastsLikedTab);
 
-          if (this._oldValue !== this._value) {
-            this._lastsLikedTab.forEach((id) => {
-              let like = this.$mediaWrapper.querySelector(`[data-id="${id}"]`);
-
-              like.querySelector(".container-like i").classList.add("liked");
-            });
-          }
+          // if array changes in popularity filter reorganize list & display ordered media card
+          this.orderedPopularity();
         } else if (
           lastLike
             .querySelector(".container-like i")
             .classList.contains("liked")
         ) {
-          // console.log("Le dernier article que j'ai liké");
-          // console.log(lastLike);
+          // If like
+          // add liked elements in array
           this._lastsLikedTab.push(lastLike.getAttribute("data-id"));
-        }
 
-        if (
-          !lastLike
-            .querySelector(".container-like i")
-            .classList.contains("liked")
-        ) {
-          // console.log("Le dernier article que j'ai unliké")
-          // console.log(lastLike)
-
-          // console.log("Les derniers articles que j'ai liké dans le cas du unlike")
-          lastsLikedTab = lastsLikedTab.filter(
-            (id) => id !== lastLike.getAttribute("data-id")
+          // Remove similar liked elements from array
+          this._lastsLikedTab = this._lastsLikedTab.filter(
+            (id, index) => this._lastsLikedTab.indexOf(id) === index
           );
-          // console.log(lastsLikedTab)
 
-          if (
-            this._value == "Popularité" &&
-            JSON.stringify(this._mediaList) !==
-              JSON.stringify(
-                this._mediaList.sort((a, b) => b._likes - a._likes)
-              )
-          ) {
-            this._mediaList = this._mediaList.sort(
-              (a, b) => b._likes - a._likes
-            );
-            this.displayMediaCard();
-
-            lastsLikedTab.forEach((id) => {
-              let like = this.$mediaWrapper.querySelector(`[data-id="${id}"]`);
-
-              like.querySelector(".container-like i").classList.add("liked");
-            });
-            // let like = this.$mediaWrapper.querySelector(
-            //   `[data-id="${lastLiked.getAttribute("data-id")}"]`
-            // );
-            // console.log("Nouvel article après reorganisation")
-            // console.log(like)
-            // like.querySelector(".container-like i").classList.add("liked");
-          }
-        } else if (
-          lastLike
-            .querySelector(".container-like i")
-            .classList.contains("liked")
-        ) {
-          lastsLikedTab.push(lastLike.getAttribute("data-id"));
-
-          // lastLiked = lastLike
-          // console.log("Le dernier article que j'ai liké")
-          // console.log(lastLike)
-
-          if (
-            this._value == "Popularité" &&
-            JSON.stringify(this._mediaList) !==
-              JSON.stringify(
-                this._mediaList.sort((a, b) => b._likes - a._likes)
-              )
-          ) {
-            this._mediaList = this._mediaList.sort(
-              (a, b) => b._likes - a._likes
-            );
-            this.displayMediaCard();
-
-            let card = btn.parentNode.parentNode.parentNode;
-            let like = this.$mediaWrapper.querySelector(
-              `[data-id="${card.getAttribute("data-id")}"]`
-            );
-            // console.log("Nouvel article après reorganisation")
-            // console.log(like)
-            like.querySelector(".container-like i").classList.add("liked");
-          }
+          this.orderedPopularity();
         }
       });
     });
+  }
+
+  // if array changes in popularity filter reorganize list & display ordered media card
+  orderedPopularity() {
+    if (
+      this._value == "Popularité" &&
+      JSON.stringify(this._mediaList) !==
+        JSON.stringify(this._mediaList.sort((a, b) => b._likes - a._likes))
+    ) {
+      this._mediaList = this._mediaList.sort((a, b) => b._likes - a._likes);
+
+      this.displayMediaCard();
+    }
   }
 }

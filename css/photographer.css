@@ -237,7 +237,7 @@ form textarea {
     width: 170px;
     background-color: #901C1C;
     border-radius: 5px;
-    z-index: 1;
+    /* z-index: 1; */
     left: 100px;
     top: -10px;
 }

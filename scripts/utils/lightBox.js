@@ -13,7 +13,6 @@ export class LightBox extends Modal {
     
     this.$btnOpen.forEach((btn) => {
       btn.addEventListener("click", (e) => {
-        console.log(btn.parentElement);
         const media = this._media.find(media => media.id == btn.parentElement.getAttribute("data-id"));
 
         this.displayLightBox(e, media);
