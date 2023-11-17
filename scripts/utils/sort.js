@@ -13,6 +13,9 @@ export class Sort {
     this._isVisible = false;
     this._mediaList = mediaList.sort((a, b) => b._likes - a._likes);
     this._value = this.$select.querySelector("button").innerText;
+    this._oldValue = this._value;
+
+    this._lastsLikedTab = [];
 
     this._likeSubject = new Subject();
     this._likeCounter = new Counter();
@@ -22,10 +25,20 @@ export class Sort {
     this.handleSort();
 
     this.$select.addEventListener("click", (e) => {
+      const oldValue = this._value;
+      this._oldValue = this._value;
+
       if (this._isVisible) {
-        this._value = e.target.value;
-        this.handleSort();
-        this.showFilter(e);
+        if (e.target.value == undefined) {
+          this._value = oldValue;
+        } else {
+          this._value = e.target.value;
+          this.showFilter(e);
+        }
+
+        if (oldValue !== this._value) {
+          this.handleSort();
+        }
       } else if (!this._isVisible) {
         this.hideFilter();
       }
@@ -54,20 +67,31 @@ export class Sort {
       case "Popularité":
         this._mediaList = this._mediaList.sort((a, b) => b._likes - a._likes);
         this.displayMediaCard();
-        this.$mediaWrapper
-          .querySelectorAll(".container-like i")
-          .forEach((btn) => {
-            btn.addEventListener("click", () => {
-                console.log(
-                  Number(btn.parentElement.querySelector("p").innerText)
-                );
-                this._mediaList = this._mediaList.sort(
-                  (a, b) => b._likes - a._likes
-                );
-                this.displayMediaCard();
-            });
-          });
-        console.log("Trié par Popularité");
+        // this.$mediaWrapper
+        //   .querySelectorAll(".container-like i")
+        //   .forEach((btn) => {
+        //     btn.addEventListener("click", (e) => {
+        // if (
+        //   JSON.stringify(this._mediaList) !==
+        //   JSON.stringify(
+        //     this._mediaList.sort((a, b) => b._likes - a._likes)
+        //   )
+        // ) {
+        //   this._mediaList = this._mediaList.sort(
+        //     (a, b) => b._likes - a._likes
+        //   );
+
+        //   this.displayMediaCard();
+
+        //   let card = btn.parentNode.parentNode.parentNode;
+        //   let like = this.$mediaWrapper.querySelector(
+        //     `[data-id="${card.getAttribute("data-id")}"]`
+        //   );
+        //   like.querySelector(".container-like i").classList.add("liked");
+        // }
+        //   });
+        // });
+        // console.log("Trié par Popularité");
         break;
       case "Date":
         this._mediaList = this._mediaList.sort((a, b) => {
@@ -82,7 +106,7 @@ export class Sort {
           return 0;
         });
         this.displayMediaCard();
-        console.log("Trié par Date");
+        // console.log("Trié par Date");
         break;
       case "Titre":
         this._mediaList = this._mediaList.sort((a, b) => {
@@ -97,7 +121,7 @@ export class Sort {
           return 0;
         });
         this.displayMediaCard();
-        console.log("Trié par Titre");
+        // console.log("Trié par Titre");
         break;
       default:
         console.log("Error Unknow Value");
@@ -111,6 +135,124 @@ export class Sort {
     this._mediaList.forEach((media) => {
       const mediaCard = new MediaCard(media, this._likeSubject);
       this.$mediaWrapper.appendChild(mediaCard.createMediaCard());
+    });
+
+    this.attachLikeEvents();
+  }
+
+  attachLikeEvents() {
+    let lastsLikedTab = [];
+    this.$mediaWrapper.querySelectorAll(".container-like i").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        const lastArticle = btn.parentNode.parentNode.parentNode;
+        const lastLike = this.$mediaWrapper.querySelector(
+          `[data-id="${lastArticle.getAttribute("data-id")}"]`
+        );
+
+        if (
+          !lastLike
+            .querySelector(".container-like i")
+            .classList.contains("liked")
+        ) {
+          // console.log("Le dernier article que j'ai unliké")
+          // console.log(lastLike)
+
+          console.log(
+            "Les derniers articles que j'ai liké dans le cas du unlike"
+          );
+          this._lastsLikedTab = this._lastsLikedTab.filter(
+            (id) => id !== lastLike.getAttribute("data-id")
+          );
+          console.log(this._lastsLikedTab);
+
+          if (this._oldValue !== this._value) {
+            this._lastsLikedTab.forEach((id) => {
+              let like = this.$mediaWrapper.querySelector(`[data-id="${id}"]`);
+
+              like.querySelector(".container-like i").classList.add("liked");
+            });
+          }
+        } else if (
+          lastLike
+            .querySelector(".container-like i")
+            .classList.contains("liked")
+        ) {
+          // console.log("Le dernier article que j'ai liké");
+          // console.log(lastLike);
+          this._lastsLikedTab.push(lastLike.getAttribute("data-id"));
+        }
+
+        if (
+          !lastLike
+            .querySelector(".container-like i")
+            .classList.contains("liked")
+        ) {
+          // console.log("Le dernier article que j'ai unliké")
+          // console.log(lastLike)
+
+          // console.log("Les derniers articles que j'ai liké dans le cas du unlike")
+          lastsLikedTab = lastsLikedTab.filter(
+            (id) => id !== lastLike.getAttribute("data-id")
+          );
+          // console.log(lastsLikedTab)
+
+          if (
+            this._value == "Popularité" &&
+            JSON.stringify(this._mediaList) !==
+              JSON.stringify(
+                this._mediaList.sort((a, b) => b._likes - a._likes)
+              )
+          ) {
+            this._mediaList = this._mediaList.sort(
+              (a, b) => b._likes - a._likes
+            );
+            this.displayMediaCard();
+
+            lastsLikedTab.forEach((id) => {
+              let like = this.$mediaWrapper.querySelector(`[data-id="${id}"]`);
+
+              like.querySelector(".container-like i").classList.add("liked");
+            });
+            // let like = this.$mediaWrapper.querySelector(
+            //   `[data-id="${lastLiked.getAttribute("data-id")}"]`
+            // );
+            // console.log("Nouvel article après reorganisation")
+            // console.log(like)
+            // like.querySelector(".container-like i").classList.add("liked");
+          }
+        } else if (
+          lastLike
+            .querySelector(".container-like i")
+            .classList.contains("liked")
+        ) {
+          lastsLikedTab.push(lastLike.getAttribute("data-id"));
+
+          // lastLiked = lastLike
+          // console.log("Le dernier article que j'ai liké")
+          // console.log(lastLike)
+
+          if (
+            this._value == "Popularité" &&
+            JSON.stringify(this._mediaList) !==
+              JSON.stringify(
+                this._mediaList.sort((a, b) => b._likes - a._likes)
+              )
+          ) {
+            this._mediaList = this._mediaList.sort(
+              (a, b) => b._likes - a._likes
+            );
+            this.displayMediaCard();
+
+            let card = btn.parentNode.parentNode.parentNode;
+            let like = this.$mediaWrapper.querySelector(
+              `[data-id="${card.getAttribute("data-id")}"]`
+            );
+            // console.log("Nouvel article après reorganisation")
+            // console.log(like)
+            like.querySelector(".container-like i").classList.add("liked");
+          }
+        }
+      });
     });
   }
 }

@@ -13,9 +13,10 @@ export class MediaCard {
     const numberLikes = document.createElement("p");
     const like = document.createElement("i");
 
+    article.setAttribute("data-id", this._media._id);
     link.setAttribute("href", "#");
     link.setAttribute("aria-label", this._media.title);
-    link.setAttribute("data-id", this._media._id);
+    // link.setAttribute("data-id", this._media._id);
     link.setAttribute("class", "media_card");
     container.setAttribute("class", "container-desc");
     containerLike.setAttribute("class", "container-like");
@@ -49,7 +50,7 @@ export class MediaCard {
   }
 
   handleLikeButton(like, numberLikes) {
-    const that = this;
+    const that = this; 
 
     if (like.classList.contains("liked")) {
       like.classList.remove("liked");
@@ -59,7 +60,6 @@ export class MediaCard {
       that._likeSubject.fire("INC", numberLikes);
     }
 
-    // console.log(Number(numberLikes.innerText))
     this._media.likes = Number(numberLikes.innerText);
   }
 }
