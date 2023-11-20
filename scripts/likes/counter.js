@@ -1,8 +1,6 @@
-import { Media } from "../models/Media.js"
-
 export class Counter {
     constructor() {
-        this._count = 0
+        this._count = 0;
     }
 
     update(action, count) {
@@ -10,15 +8,15 @@ export class Counter {
         let sumLikes = Number(document.querySelector(".total_likes").innerText);
 
         if(action === "INC") {
-            this._count += 1
-            document.querySelector(".total_likes").innerText = sumLikes += 1
+            this._count += 1;
+            document.querySelector(".total_likes").innerText = sumLikes += 1;
         } else if(action === "DEC") {
-            this._count -= 1
-            document.querySelector(".total_likes").innerText = sumLikes -= 1
+            this._count -= 1;
+            document.querySelector(".total_likes").innerText = sumLikes -= 1;
         } else {
-            throw "Unknow action"
+            throw "Unknow action";
         }
 
-        count.innerHTML = this._count
+        count.innerHTML = this._count;
     }
 }

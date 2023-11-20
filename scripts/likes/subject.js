@@ -1,10 +1,10 @@
 export class Subject {
     constructor() {
-        this._observers = []
+        this._observers = [];
     }
 
     subscribe(observer) {
-        this._observers.push(observer)
+        this._observers.push(observer);
     }
 
     unsubscribe(observer) {

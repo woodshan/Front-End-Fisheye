@@ -57,7 +57,7 @@ export class PhotographerTemplate {
     description.textContent = this._photographer._tagline;
     // btn.textContent = "Contactez-moi";
 
-    section.appendChild(descriptionContainer)
+    section.appendChild(descriptionContainer);
     descriptionContainer.appendChild(name);
     descriptionContainer.appendChild(location);
     descriptionContainer.appendChild(description);

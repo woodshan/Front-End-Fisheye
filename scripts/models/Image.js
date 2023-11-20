@@ -3,8 +3,8 @@ import { Media } from "../models/Media.js";
 export class Image extends Media{
     constructor(data, photographer) {
         super(data);
-        this._photographer = photographer.split(" ")[0]
-        this._src = `/assets/medias/${this._photographer}/${this._media}`
+        this._photographer = photographer.split(" ")[0];
+        this._src = `/assets/medias/${this._photographer}/${this._media}`;
     }
 
     get thumbnail() {
@@ -15,6 +15,6 @@ export class Image extends Media{
         
         img.setAttribute("class", "img_light_box");
 
-        return img
+        return img;
     }
 } 

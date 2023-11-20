@@ -4,7 +4,7 @@ import { PhotographerTemplate } from "../templates/photographerCard.js";
 import { MediasFactory } from "../factories/MediasFactory.js";
 // import { MediaCard } from "../templates/mediaCard.js";
 import { InfoBox } from "../templates/infoBox.js";
-import { ContactForm } from "../utils/contactForm.js";
+import { ContactForm } from "../templates/contactForm.js";
 // import { LightBox } from "../utils/lightBox.js";
 // import { Subject } from "../likes/subject.js";
 // import { Counter } from "../likes/counter.js";
@@ -30,12 +30,19 @@ class PhotographerPage {
   async main() {
     const data = await this.api.getData();
 
-    const photographerData = data.photographers.find(photographer => photographer.id === this._id);
+    const photographerData = data.photographers.find(
+      (photographer) => photographer.id === this._id
+    );
 
-    const mediaData = data.media.filter(media => media.photographerId === this._id);
+    const mediaData = data.media.filter(
+      (media) => media.photographerId === this._id
+    );
 
     const photographer = new Photographer(photographerData);
-    const photographerTemplate = new PhotographerTemplate(photographer, this._id);
+    const photographerTemplate = new PhotographerTemplate(
+      photographer,
+      this._id
+    );
     photographerTemplate.createPhotographerHeader(this.$photographerHeader);
 
     const photographerName = photographer.name;
@@ -47,7 +54,7 @@ class PhotographerPage {
       // const mediaCard = new MediaCard(mediaFactory, this._likeSubject);
       // this.$mediaWrapper.appendChild(mediaCard.createMediaCard());
 
-      mediaList.push(mediaFactory)
+      mediaList.push(mediaFactory);
     });
 
     const infoBox = new InfoBox(this._id, data);

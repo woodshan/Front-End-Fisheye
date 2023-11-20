@@ -1,4 +1,4 @@
-import { Modal } from "../templates/modal.js";
+import { Modal } from "./modal.js";
 
 export class ContactForm extends Modal {
   constructor(photographerName) {
@@ -8,7 +8,9 @@ export class ContactForm extends Modal {
     this.$btnOpen = document.querySelector(".contact_button");
 
     this.$inputs = this.$modal.querySelectorAll("input, textarea");
-    this.$modalElements = this.$modal.querySelectorAll("img, input, textarea, button");
+    this.$modalElements = this.$modal.querySelectorAll(
+      "img, input, textarea, button"
+    );
     this.$datas = [];
 
     this.displayTitle(this.$modal, this._photographerName);
@@ -18,7 +20,7 @@ export class ContactForm extends Modal {
     });
 
     document.addEventListener("keydown", (e) => {
-      this.accessibility(this.$modal, e, this.$modalElements)
+      this.accessibility(this.$modal, e, this.$modalElements);
     });
 
     this.$modal
@@ -52,7 +54,7 @@ export class ContactForm extends Modal {
 
       this.closeModal(this.$modal);
 
-      this.$inputs.forEach(input => input.value = "");
+      this.$inputs.forEach((input) => (input.value = ""));
     } else {
       console.log("Veuillez remplir tous les champs.");
     }

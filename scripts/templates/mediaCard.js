@@ -44,7 +44,7 @@ export class MediaCard {
       if(e.keyCode == 13) {
         this.handleLikeButton(like, numberLikes);
       }
-    })
+    });
 
     return article;
   }

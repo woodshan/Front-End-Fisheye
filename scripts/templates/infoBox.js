@@ -3,11 +3,11 @@ import { Photographer } from "../models/Photographer.js";
 
 export class InfoBox {
     constructor(id, data) {
-        this._id = id
-        this._media = data.media.filter(media => media.photographerId == this._id)
-        this._photographer = data.photographers.filter((photographer) => photographer.id == this._id)[0]
-        this._photographerPrice = new Photographer(this._photographer).price
-        this._sumLikes = []
+        this._id = id;
+        this._media = data.media.filter(media => media.photographerId == this._id);
+        this._photographer = data.photographers.filter((photographer) => photographer.id == this._id)[0];
+        this._photographerPrice = new Photographer(this._photographer).price;
+        this._sumLikes = [];
     }
 
     createRateCard () {
@@ -28,14 +28,14 @@ export class InfoBox {
         totalLikes.setAttribute("class", "total_likes");
         like.setAttribute("class", "fa-solid fa-heart");
 
-        totalLikes.innerText = this._sumLikes
-        dailyPrice.innerText = `${this._photographerPrice}€ / jour`
+        totalLikes.innerText = this._sumLikes;
+        dailyPrice.innerText = `${this._photographerPrice}€ / jour`;
         
         container.appendChild(containerLikes);
         containerLikes.appendChild(totalLikes);
         containerLikes.appendChild(like);
         container.appendChild(dailyPrice);
 
-        return container
+        return container;
     }
 }

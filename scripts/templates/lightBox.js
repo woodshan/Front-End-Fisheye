@@ -1,4 +1,4 @@
-import { Modal } from "../templates/modal.js";
+import { Modal } from "./modal.js";
 export class LightBox extends Modal {
   constructor(mediaData) {
     super();
@@ -10,10 +10,12 @@ export class LightBox extends Modal {
     this.$modalElements = this.$modal.querySelectorAll("#close_light_box, i");
     this.$btnNext = this.$modal.querySelector(".fa-chevron-right");
     this.$btnPrevious = this.$modal.querySelector(".fa-chevron-left");
-    
+
     this.$btnOpen.forEach((btn) => {
       btn.addEventListener("click", (e) => {
-        const media = this._media.find(media => media.id == btn.parentElement.getAttribute("data-id"));
+        const media = this._media.find(
+          (media) => media.id == btn.parentElement.getAttribute("data-id")
+        );
 
         this.displayLightBox(e, media);
         this.displayModal(this.$modal);
@@ -24,12 +26,12 @@ export class LightBox extends Modal {
     document.addEventListener("keydown", (e) => {
       this.accessibility(this.$modal, e, this.$modalElements);
 
-      if(e.keyCode == 39) {
-        this.next(e)
-      } 
+      if (e.keyCode == 39) {
+        this.next(e);
+      }
 
-      if(e.keyCode == 37) {
-        this.previous(e)
+      if (e.keyCode == 37) {
+        this.previous(e);
       }
     });
 
@@ -38,8 +40,8 @@ export class LightBox extends Modal {
     });
 
     this.$btnNext.addEventListener("keydown", (e) => {
-      if(e.keyCode == 13) {
-        this.next(e)
+      if (e.keyCode == 13) {
+        this.next(e);
       }
     });
 
@@ -48,8 +50,8 @@ export class LightBox extends Modal {
     });
 
     this.$btnPrevious.addEventListener("keydown", (e) => {
-      if(e.keyCode == 13) {
-        this.previous(e)
+      if (e.keyCode == 13) {
+        this.previous(e);
       }
     });
   }
@@ -57,8 +59,8 @@ export class LightBox extends Modal {
   displayLightBox(e, mediaData) {
     e.preventDefault();
 
-    if(this.$modal.querySelector(".img_light_box")) {
-      this.$modal.querySelector(".img_light_box").remove()
+    if (this.$modal.querySelector(".img_light_box")) {
+      this.$modal.querySelector(".img_light_box").remove();
     }
 
     this.$modal.querySelector(".container_title").prepend(mediaData.thumbnail);
@@ -68,21 +70,21 @@ export class LightBox extends Modal {
   }
 
   next(e) {
-    if(this._currentIndex < this._media.length-1) {
-      this._currentIndex++
+    if (this._currentIndex < this._media.length - 1) {
+      this._currentIndex++;
     } else {
-      this._currentIndex = 0
+      this._currentIndex = 0;
     }
 
-    this.displayLightBox(e, this._media[this._currentIndex])
+    this.displayLightBox(e, this._media[this._currentIndex]);
   }
 
   previous(e) {
-    if(this._currentIndex <= 0){
-      this._currentIndex = this._media.length-1;
-    } else if(this._currentIndex <= this._media.length-1) {
-      this._currentIndex--
+    if (this._currentIndex <= 0) {
+      this._currentIndex = this._media.length - 1;
+    } else if (this._currentIndex <= this._media.length - 1) {
+      this._currentIndex--;
     }
-    this.displayLightBox(e, this._media[this._currentIndex])
+    this.displayLightBox(e, this._media[this._currentIndex]);
   }
 }

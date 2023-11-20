@@ -1,7 +1,7 @@
 import { Counter } from "../likes/counter.js";
 import { Subject } from "../likes/subject.js";
 import { MediaCard } from "../templates/mediaCard.js";
-import { LightBox } from "./lightBox.js";
+import { LightBox } from "../templates/lightBox.js";
 
 export class Sort {
   constructor(mediaList) {
@@ -107,7 +107,7 @@ export class Sort {
 
   attachLikeEvents() {
     this.$mediaWrapper.querySelectorAll(".container-like i").forEach((btn) => {
-      btn.addEventListener("click", (e) => {
+      btn.addEventListener("click", () => {
         // set last media card clicked
         const lastArticle = btn.parentNode.parentNode.parentNode;
         const lastLike = this.$mediaWrapper.querySelector(
