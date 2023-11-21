@@ -19,7 +19,7 @@ class PhotographerPage {
     this.$photographerHeader = document.querySelector(".photograph-header");
     this.$main = document.querySelector("main");
     this.$mediaSection = document.querySelector(".media-section");
-    this.$mediaWrapper = document.querySelector(".wrapper");
+    // this.$mediaWrapper = document.querySelector(".wrapper");
 
     // this._likeSubject = new Subject();
     // this._likeCounter = new Counter();

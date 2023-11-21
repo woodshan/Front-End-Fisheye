@@ -13,10 +13,6 @@
     overflow-y: auto;
 }
 
-.hidden-modal {
-    display: none !important;
-}
-
 .contact_button {
     order: 2;
     font-size: 20px;
@@ -98,9 +94,19 @@ form input, form textarea {
     text-indent: 10px;
 }
 
+.wrong {
+    border: 2px solid #901C1C;
+}
+
 form textarea {
     height: 100px;
     font-size: 1.2em;
+}
+
+.error-msg {
+    color: black;
+    margin-top:0;
+    font-weight: bold;
 }
 
 .modal .contact_button:focus,  .modal .contact_button:hover {
@@ -259,8 +265,8 @@ form textarea {
     border-radius: 5px;
 }
 
-.media-section .hidden {
-    display:none;
+.hidden {
+    display:none !important;
 }
 
 .media-section button {
@@ -295,16 +301,30 @@ form textarea {
     transform:rotateZ(180deg);
 }
 
-.wrapper {
+/* .wrapper {
     display:grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-column-gap: 75px;
     margin-top: 20px;
-}
+} */
 
-.media-section article {
+/* .media-section article {
     margin: 20px 0;
     width: 350px;
+} */
+
+.media_cards_list {
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 75px;
+    margin-top: 20px;
+    padding: 0;
+}
+
+.media-section li {
+    margin: 20px 0;
+    width: 350px;
+    list-style: none;
 }
 
 .media-section .thumbnail {

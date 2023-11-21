@@ -12,8 +12,6 @@ export class Image extends Media{
 
         img.setAttribute("src", this._src);
         img.setAttribute("alt", this.title);
-        // img.setAttribute("aria-label", this.title);
-        img.setAttribute("tabindex", "0");
         
         img.setAttribute("class", "thumbnail");
 

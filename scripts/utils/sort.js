@@ -8,7 +8,7 @@ export class Sort {
     this.$select = document.querySelector(".select");
     this.$btn = this.$select.querySelectorAll("button");
     this.$icon = this.$select.querySelector("i");
-    this.$mediaWrapper = document.querySelector(".wrapper");
+    this.$mediaWrapper = document.querySelector(".media_cards_list");
 
     this._isVisible = false;
     this._mediaList = mediaList.sort((a, b) => b._likes - a._likes);
@@ -132,6 +132,7 @@ export class Sort {
       let like = this.$mediaWrapper.querySelector(`[data-id="${id}"]`);
 
       like.querySelector(".container-like i").classList.add("liked");
+      like.querySelector(".container-like .sr-only").innerText = "Je n'aime plus";
     });
 
     // Save liked elements

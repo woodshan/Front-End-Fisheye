@@ -17,7 +17,7 @@ export class Modal {
   }
 
   displayModal(modal) {
-    modal.parentElement.classList.remove("hidden-modal");
+    modal.parentElement.classList.remove("hidden");
     document.querySelector("body").style.overflowY = "hidden";
     this.$container.setAttribute("aria-hidden", "true");
     modal.setAttribute("aria-hidden", "false");
@@ -31,7 +31,7 @@ export class Modal {
   }
 
   closeModal(modal) {
-    modal.parentElement.classList.add("hidden-modal");
+    modal.parentElement.classList.add("hidden");
     document.querySelector("body").style.overflowY = "auto";
     this.$container.setAttribute("aria-hidden", "false");
     modal.setAttribute("aria-hidden", "true");

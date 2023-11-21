@@ -95,3 +95,11 @@ ul {
     margin: 0;
     color: #757575;
 }
+
+.photographer_link {
+    transition: 0.3s;
+}
+
+.photographer_link:hover, .photographer_link:focus {
+    transform: scale(1.02);
+}

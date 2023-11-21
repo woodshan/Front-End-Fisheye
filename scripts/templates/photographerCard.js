@@ -15,10 +15,11 @@ export class PhotographerTemplate {
     const description = document.createElement("p");
     const pricePerDay = document.createElement("p");
 
-    link.setAttribute("aria-label", this._photographer._name);
+    link.setAttribute("aria-label", `Ouvrir la page de ${this._photographer._name}`);
     link.setAttribute("href", `photographer.html?id=${this._photographer._id}`);
+    link.setAttribute("class", "photographer_link");
     img.setAttribute("src", this._photographer.picture);
-    img.setAttribute("alt", "");
+    img.setAttribute("alt", this._photographer._name);
 
     description.classList.add("description");
     pricePerDay.classList.add("price");

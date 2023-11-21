@@ -11,7 +11,9 @@ export class ContactForm extends Modal {
     this.$modalElements = this.$modal.querySelectorAll(
       "img, input, textarea, button"
     );
-    this.$datas = [];
+    this.$errorMsg = this.$modal.querySelector(".error-msg");
+
+    this._datas = [];
 
     this.displayTitle(this.$modal, this._photographerName);
 
@@ -38,27 +40,35 @@ export class ContactForm extends Modal {
     this.$inputs.forEach((input) => {
       if (input.value == "") {
         checkForm = false;
+
+        input.classList.add("wrong");
       } else {
         checkForm = true;
-        this.$datas.push(input.value);
+
+        input.classList.remove("wrong");
+
+        this._datas.push(input.value);
       }
     });
 
     if (checkForm) {
       console.log(`
-                Prénom : ${this.$datas[0]},
-                Nom: ${this.$datas[1]},
-                Email: ${this.$datas[2]},
-                Message: ${this.$datas[3]}
+                Prénom : ${this._datas[0]},
+                Nom: ${this._datas[1]},
+                Email: ${this._datas[2]},
+                Message: ${this._datas[3]}
             `);
+      
+      this.$errorMsg.classList.add("hidden");
 
       this.closeModal(this.$modal);
 
       this.$inputs.forEach((input) => (input.value = ""));
     } else {
+      this.$errorMsg.classList.remove("hidden");
       console.log("Veuillez remplir tous les champs.");
     }
 
-    this.$datas = [];
+    this._datas = [];
   }
 }
