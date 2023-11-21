@@ -6,7 +6,8 @@ export class LightBox extends Modal {
     this._currentIndex = 0;
 
     this.$modal = document.querySelector(".container_light_box");
-    this.$btnOpen = document.querySelectorAll(".media_card");
+    // this.$btnOpen = document.querySelectorAll(".media_card");
+    this.$btnOpen = document.querySelectorAll(".wrapper .thumbnail");
     this.$modalElements = this.$modal.querySelectorAll("#close_light_box, i");
     this.$btnNext = this.$modal.querySelector(".fa-chevron-right");
     this.$btnPrevious = this.$modal.querySelector(".fa-chevron-left");
@@ -59,8 +60,8 @@ export class LightBox extends Modal {
   displayLightBox(e, mediaData) {
     e.preventDefault();
 
-    if (this.$modal.querySelector(".img_light_box")) {
-      this.$modal.querySelector(".img_light_box").remove();
+    if (this.$modal.querySelector(".thumbnail")) {
+      this.$modal.querySelector(".thumbnail").remove();
     }
 
     this.$modal.querySelector(".container_title").prepend(mediaData.thumbnail);

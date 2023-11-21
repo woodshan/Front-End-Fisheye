@@ -29,6 +29,12 @@
     background-color: #901C1C;
     border-radius: 5px;
     cursor: pointer;
+    transition: all 0.3s;
+}
+
+
+.modal .contact_button:focus,  .modal .contact_button:hover {
+    transform: scale(1.05);
 }
 
 .modal {
@@ -121,17 +127,13 @@ form textarea {
     cursor:pointer;
 }
 
-/* .img_box_container {
-    
-} */
-
 .container_light_box {
     position: relative;
     display:flex;
     align-items: center;
 }
 
-.img_light_box {
+.thumbnail {
     width: 1050px;
     height: 850px;
     object-fit: cover;
@@ -166,6 +168,11 @@ form textarea {
     display:flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.photograph-header .contact_button:focus,  .photograph-header .contact_button:hover {
+    background-color: #DB8876;
+    color: black;
 }
 
 .rate-container {
@@ -244,6 +251,10 @@ form textarea {
     top: -10px;
 }
 
+.select button {
+    outline: black solid 1px;;
+}
+
 .media-section .hidden {
     display:none;
 }
@@ -298,6 +309,11 @@ form textarea {
     object-fit: cover;
     border-radius: 2%;
     overflow-clip-margin: unset;
+    transition: transform 0.3s;
+}
+
+.media-section .thumbnail:hover, .media-section .thumbnail:focus {
+    transform: scale(1.03);
 }
 
 .media-section .container-like, .media-section .container-desc {
@@ -314,14 +330,15 @@ form textarea {
 .media-section i {
     cursor: pointer;
     font-size: 1.2em;
+    color: #901c1cbc;
+    transition: all 0.3s;
+}
+
+.media-section .liked, .media-section i:hover {
     color: #901C1C;
 }
 
 /* MODAL */
 .modal input::placeholder, .modal textarea::placeholder {
     font-size: 1.5em;
-}
-
-.modal input {
-    /* padding:0 10px; */
 }
