@@ -7,7 +7,7 @@ export class Sort {
   constructor(mediaList) {
     this.$select = document.querySelector(".select");
     this.$btn = this.$select.querySelectorAll("button");
-    this.$icon = this.$select.querySelector("i");
+    this.$icon = this.$select.querySelector("em");
     this.$mediaWrapper = document.querySelector(".media_cards_list");
 
     this._isVisible = false;
@@ -25,14 +25,17 @@ export class Sort {
 
     // Handle click outside filter
     document.addEventListener("click", (e) => {
-      if(e.target.parentElement !== this.$select && e.target !== this.$select.querySelector("i") && this._isVisible == true) {
+      if(e.target.parentElement !== this.$select && e.target !== this.$select.querySelector("em") && this._isVisible == true) {
         this.$btn.forEach((btn) => {
-          if(btn.querySelector("i") === null) {
+          if(btn.querySelector("em") === null) {
             this._isVisible = false
             btn.classList.add("hidden");
+            btn.setAttribute("aria-hidden", "true");
           } else {
-            btn.querySelector("i").classList.remove("arrow-up");
-            btn.querySelector("i").classList.add("arrow-down");
+            this.$select.setAttribute("aria-expanded", "false");
+            this.$select.setAttribute("aria-label", "Ouvrir le menu de tri");
+            btn.querySelector("em").classList.remove("arrow-up");
+            btn.querySelector("em").classList.add("arrow-down");
           }
         });
       }
@@ -64,31 +67,39 @@ export class Sort {
   }
 
   /**
-   * Hide Filter
-   * @param {HTMLElement} htmlElement 
+   * Hide Filter & handle accessibility
+   * @param {HTMLElement} htmlElement button
    */
   hideFilter(htmlElement) {
     this.$btn.forEach((btn) => {
       btn.classList.add("hidden");
+      btn.setAttribute("aria-hidden", "true");
     });
 
+    this.$select.setAttribute("aria-expanded", "false");
+    this.$select.setAttribute("aria-label", "Ouvrir le menu de tri");
     this.$select.prepend(htmlElement);
     htmlElement.append(this.$icon);
     htmlElement.classList.remove("hidden");
+    htmlElement.setAttribute("aria-hidden", "false");
 
-    htmlElement.querySelector("i").classList.remove("arrow-up");
-    htmlElement.querySelector("i").classList.add("arrow-down");
+    htmlElement.querySelector("em").classList.remove("arrow-up");
+    htmlElement.querySelector("em").classList.add("arrow-down");
 
     this._isVisible = false;
   }
 
+  // Show filter & handle accessibility
   showFilter() {
     this.$btn.forEach((btn) => {
       btn.classList.remove("hidden");
+      btn.setAttribute("aria-hidden", "false");
     });
 
-    this.$select.querySelector("i").classList.remove("arrow-down");
-    this.$select.querySelector("i").classList.add("arrow-up");
+    this.$select.setAttribute("aria-expanded", "true");
+    this.$select.setAttribute("aria-label", "Fermer le menu de tri");
+    this.$select.querySelector("em").classList.remove("arrow-down");
+    this.$select.querySelector("em").classList.add("arrow-up");
 
     this._isVisible = true;
   }
@@ -131,8 +142,9 @@ export class Sort {
     this._lastsLikedTab.forEach((id) => {
       let like = this.$mediaWrapper.querySelector(`[data-id="${id}"]`);
 
-      like.querySelector(".container-like i").classList.add("liked");
-      like.querySelector(".container-like .sr-only").innerText = "Je n'aime plus";
+      like.querySelector(".container-like button").classList.add("liked");
+      like.querySelector(".container-like .sr-only").innerText = "Je n'aime pas";
+      like.setAttribute("aria-label", "Je n'aime pas");
     });
 
     // Save liked elements
@@ -140,7 +152,7 @@ export class Sort {
   }
 
   attachLikeEvents() {
-    this.$mediaWrapper.querySelectorAll(".container-like i").forEach((btn) => {
+    this.$mediaWrapper.querySelectorAll(".container-like button").forEach((btn) => {
       btn.addEventListener("click", () => {
         // set last media card clicked
         const lastArticle = btn.parentNode.parentNode.parentNode;
@@ -152,7 +164,7 @@ export class Sort {
 
         if (
           !lastLike
-            .querySelector(".container-like i")
+            .querySelector(".container-like button")
             .classList.contains("liked")
         ) {
           // If unlike
@@ -165,7 +177,7 @@ export class Sort {
           this.orderedPopularity();
         } else if (
           lastLike
-            .querySelector(".container-like i")
+            .querySelector(".container-like button")
             .classList.contains("liked")
         ) {
           // If like

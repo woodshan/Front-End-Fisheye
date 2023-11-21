@@ -9,7 +9,8 @@ export class LightBox extends Modal {
 
     this.$modal = document.querySelector(".container_light_box");
     this.$btnOpen = document.querySelectorAll(".media_card");
-    this.$modalElements = this.$modal.querySelectorAll("#close_light_box, i");
+    // this.$modalElements = this.$modal.querySelectorAll("#close_light_box, i");
+    this.$modalElements = this.$modal.querySelectorAll("#close_light_box, button");
     this.$btnNext = this.$modal.querySelector(".fa-chevron-right");
     this.$btnPrevious = this.$modal.querySelector(".fa-chevron-left");
 

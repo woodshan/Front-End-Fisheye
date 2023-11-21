@@ -21,11 +21,12 @@ export class InfoBox {
         const container = document.createElement("div");
         const containerLikes = document.createElement("p");
         const totalLikes = document.createElement("span");
-        const like = document.createElement("i");
+        const like = document.createElement("em");
         const dailyPrice = document.createElement("p");
 
         container.setAttribute("class", "rate-container");
         totalLikes.setAttribute("class", "total_likes");
+        totalLikes.setAttribute("aria-label", "Total de j'aime");
         like.setAttribute("class", "fa-solid fa-heart");
 
         totalLikes.innerText = this._sumLikes;

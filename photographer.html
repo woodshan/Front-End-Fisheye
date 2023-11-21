@@ -27,11 +27,13 @@
         <!-- FILTER -->
         <div class="sort">
           <p class="sort-by">Trier par</p>
-          <div class="select">
-            <button value="Popularité" tabindex="0">Popularité<i
-                class="fa-solid fa-chevron-down arrow-down"></i></button>
-            <button value="Date" class="hidden" tabindex="0">Date</button>
-            <button value="Titre" class="hidden" tabindex="0">Titre</button>
+          <div class="select" role="listbox" aria-haspopup="true" aria-expanded="false" aria-label="Ouvrir le menu de tri">
+                <button value="Popularité" aria-label="Trier par Popularité" aria-hidden="false" tabindex="0">Popularité<em
+                  class="fa-solid fa-chevron-down arrow-down"></em></button>
+            <button value="Date" aria-label="Trier par Date" aria-hidden="true" class="hidden"
+              tabindex="0">Date</button>
+            <button value="Titre" aria-label="Trier par Titre" aria-hidden="true" class="hidden"
+              tabindex="0">Titre</button>
           </div>
         </div>
         <!-- MEDIA CARDS -->
@@ -46,7 +48,7 @@
     <div class="modal" aria-hidden="true" role="dialog" aria-describedby="modalTitle">
       <header>
         <h1 id="modalTitle">Contactez-moi<br></h1>
-        <img src="assets/icons/closeModal.svg" class="close_button" role="button" tabindex="0" />
+        <img src="assets/icons/closeModal.svg" alt="Bouton de fermeture" class="close_button" role="button" tabindex="0" />
       </header>
       <form>
         <div>
@@ -68,9 +70,9 @@
   <section id="light_box" class="hidden">
     <div class="container_light_box" aria-hidden="true" role="dialog" aria-describedby="lightBoxTitle">
       <!-- <div class="img_box_container"> -->
-      <img src="assets/icons/closeLightBox.svg" id="close_light_box" class="close_button" role="button" tabindex="0" />
+      <img src="assets/icons/closeLightBox.svg" id="close_light_box" alt="Bouton de fermeture" class="close_button" role="button" tabindex="0" />
       <div>
-        <i class="fa-solid fa-chevron-left" role="button" tabindex="0"></i>
+        <button class="fa-solid fa-chevron-left" role="button" tabindex="0"></button>
         <p class="sr-only">Précédent</p>
       </div>
       <div class="container_title">
@@ -78,7 +80,7 @@
         <h1 id="lightBoxTitle"></h1>
       </div>
       <div>
-        <i class="fa-solid fa-chevron-right" role="button" tabindex="0"></i>
+        <button class="fa-solid fa-chevron-right" role="button" tabindex="0"></button>
         <p class="sr-only">Suivant</p>
       </div>
 

@@ -4,50 +4,6 @@ export class MediaCard {
     this._likeSubject = likeSubject;
   }
 
-  // createMediaCard() {
-  //   const article = document.createElement("article");
-  //   const link = document.createElement("a");
-  //   const container = document.createElement("div");
-  //   const title = document.createElement("p");
-  //   const containerLike = document.createElement("div");
-  //   const numberLikes = document.createElement("p");
-  //   const like = document.createElement("i");
-
-  //   article.setAttribute("data-id", this._media._id);
-  //   link.setAttribute("href", "#");
-  //   link.setAttribute("aria-label", `Ouvrir ${this._media.title}`);
-  //   link.setAttribute("class", "media_card");
-  //   container.setAttribute("class", "container-desc");
-  //   containerLike.setAttribute("class", "container-like");
-  //   like.setAttribute("role", "button");
-  //   like.setAttribute("tabindex", "0");
-  //   like.setAttribute("aria-label", "Like");
-  //   like.setAttribute("class", "fa-solid fa-heart");
-
-  //   title.innerText = this._media.title;
-  //   numberLikes.innerText = this._media.likes;
-
-  //   article.appendChild(link);
-  //   link.appendChild(this._media.thumbnail);
-  //   article.appendChild(container);
-  //   container.appendChild(title);
-  //   container.appendChild(containerLike);
-  //   containerLike.appendChild(numberLikes);
-  //   containerLike.appendChild(like);
-
-  //   like.addEventListener("click", () => {
-  //     this.handleLikeButton(like, numberLikes);
-  //   });
-
-  //   like.addEventListener("keydown", (e) => {
-  //     if(e.keyCode == 13) {
-  //       this.handleLikeButton(like, numberLikes);
-  //     }
-  //   });
-
-  //   return article;
-  // }
-
   createMediaCard() {
     const article = document.createElement("li");
     const link = document.createElement("a");
@@ -55,7 +11,8 @@ export class MediaCard {
     const title = document.createElement("p");
     const containerLike = document.createElement("div");
     const numberLikes = document.createElement("p");
-    const like = document.createElement("i");
+    // const like = document.createElement("i");
+    const like = document.createElement("button");
     const srOnly = document.createElement("p");
 
     article.setAttribute("data-id", this._media._id);
@@ -66,7 +23,7 @@ export class MediaCard {
     containerLike.setAttribute("class", "container-like");
     like.setAttribute("role", "button");
     like.setAttribute("tabindex", "0");
-    like.setAttribute("aria-label", "Like");
+    like.setAttribute("aria-label", "J'aime");
     like.setAttribute("class", "fa-solid fa-heart");
     srOnly.setAttribute("class", "sr-only");
 
@@ -87,12 +44,6 @@ export class MediaCard {
       this.handleLikeButton(like, numberLikes);
     });
 
-    like.addEventListener("keydown", (e) => {
-      if(e.keyCode == 13) {
-        this.handleLikeButton(like, numberLikes);
-      }
-    });
-
     return article;
   }
 
@@ -103,10 +54,12 @@ export class MediaCard {
       like.classList.remove("liked");
       that._likeSubject.fire("DEC", numberLikes);
       numberLikes.parentElement.querySelector(".sr-only").innerText = "J'aime";
+      like.setAttribute("aria-label", "J'aime");
     } else {
       like.classList.add("liked");
       that._likeSubject.fire("INC", numberLikes);
-      numberLikes.parentElement.querySelector(".sr-only").innerText = "Je n'aime plus";
+      numberLikes.parentElement.querySelector(".sr-only").innerText = "Je n'aime pas";
+      like.setAttribute("aria-label", "Je n'aime pas");
     }
 
     this._media.likes = Number(numberLikes.innerText);
