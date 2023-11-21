@@ -23,40 +23,73 @@ export class Sort {
 
     this.handleSort();
 
+    // Handle click outside filter
+    document.addEventListener("click", (e) => {
+      if(e.target.parentElement !== this.$select && e.target !== this.$select.querySelector("i") && this._isVisible == true) {
+        this.$btn.forEach((btn) => {
+          if(btn.querySelector("i") === null) {
+            this._isVisible = false
+            btn.classList.add("hidden");
+          } else {
+            btn.querySelector("i").classList.remove("arrow-up");
+            btn.querySelector("i").classList.add("arrow-down");
+          }
+        });
+      }
+    });
+
+    // Handle filter
     this.$select.addEventListener("click", (e) => {
       const oldValue = this._value;
 
       if (this._isVisible) {
+        let htmlElement;
         if (e.target.value == undefined) {
-          this._value = oldValue;
+          this._value = e.target.parentElement.value;
+          htmlElement = e.target.parentElement;
+          this.hideFilter(htmlElement);
         } else {
           this._value = e.target.value;
-          this.showFilter(e);
+          htmlElement = e.target;
+          this.hideFilter(htmlElement);
         }
 
         if (oldValue !== this._value) {
           this.handleSort();
         }
       } else if (!this._isVisible) {
-        this.hideFilter();
+        this.showFilter();
       }
     });
   }
 
-  showFilter(e) {
+  /**
+   * Hide Filter
+   * @param {HTMLElement} htmlElement 
+   */
+  hideFilter(htmlElement) {
     this.$btn.forEach((btn) => {
       btn.classList.add("hidden");
     });
-    this.$select.prepend(e.target);
-    e.target.append(this.$icon);
-    e.target.classList.remove("hidden");
+
+    this.$select.prepend(htmlElement);
+    htmlElement.append(this.$icon);
+    htmlElement.classList.remove("hidden");
+
+    htmlElement.querySelector("i").classList.remove("arrow-up");
+    htmlElement.querySelector("i").classList.add("arrow-down");
+
     this._isVisible = false;
   }
 
-  hideFilter() {
+  showFilter() {
     this.$btn.forEach((btn) => {
       btn.classList.remove("hidden");
     });
+
+    this.$select.querySelector("i").classList.remove("arrow-down");
+    this.$select.querySelector("i").classList.add("arrow-up");
+
     this._isVisible = true;
   }
 

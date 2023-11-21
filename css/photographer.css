@@ -32,11 +32,6 @@
     transition: all 0.3s;
 }
 
-
-.modal .contact_button:focus,  .modal .contact_button:hover {
-    transform: scale(1.05);
-}
-
 .modal {
     border-radius: 5px;
     background-color: #DB8876;
@@ -90,6 +85,10 @@ form div {
     margin-bottom: 26px;
 }
 
+.modal input::placeholder, .modal textarea::placeholder {
+    font-size: 1.5em;
+}
+
 form input, form textarea {
     width: 100%;
     padding: 25px 0;
@@ -102,6 +101,10 @@ form input, form textarea {
 form textarea {
     height: 100px;
     font-size: 1.2em;
+}
+
+.modal .contact_button:focus,  .modal .contact_button:hover {
+    transform: scale(1.05);
 }
 
 /* LIGHT BOX */
@@ -251,8 +254,9 @@ form textarea {
     top: -10px;
 }
 
-.select button {
-    outline: black solid 1px;;
+.select button:focus, .select button:hover {
+    border: black solid 2px;
+    border-radius: 5px;
 }
 
 .media-section .hidden {
@@ -283,11 +287,11 @@ form textarea {
     color:white;
 }
 
-.arrow-up {
+.arrow-down {
     transform:rotateZ(0);
 }
 
-.arrow-down {
+.arrow-up {
     transform:rotateZ(180deg);
 }
 
@@ -303,13 +307,14 @@ form textarea {
     width: 350px;
 }
 
-.media-section img, .media-section video {
+.media-section .thumbnail {
     width: 350px;
     height: 300px;
     object-fit: cover;
     border-radius: 2%;
     overflow-clip-margin: unset;
     transition: transform 0.3s;
+    cursor:pointer;
 }
 
 .media-section .thumbnail:hover, .media-section .thumbnail:focus {
@@ -336,9 +341,4 @@ form textarea {
 
 .media-section .liked, .media-section i:hover {
     color: #901C1C;
-}
-
-/* MODAL */
-.modal input::placeholder, .modal textarea::placeholder {
-    font-size: 1.5em;
 }
