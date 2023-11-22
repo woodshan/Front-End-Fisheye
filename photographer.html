@@ -53,16 +53,16 @@
       <form>
         <div>
           <label for="first-name">Prénom</label>
-          <input type="text" id="first-name" placeholder="Écrivez votre prénom" />
+          <input type="text" id="first-name" required aria-required="true" placeholder="Écrivez votre prénom" />
           <label for="last-name">Nom</label>
-          <input type="text" id="last-name" placeholder="Écrivez votre nom" />
+          <input type="text" id="last-name" required aria-required="true" placeholder="Écrivez votre nom" />
           <label for="email">Email</label>
-          <input type="email" id="email" placeholder="Écrivez votre email" />
+          <input type="email" id="email" required aria-required="true" placeholder="Écrivez votre email" />
           <label for="message">Votre message</label>
-          <textarea id="message" placeholder="Écrivez votre Message"></textarea>
+          <textarea id="message" required aria-required="true" placeholder="Écrivez votre Message"></textarea>
         </div>
         <p class="error-msg hidden">Veuillez remplir tous les champs.</p>
-        <button class="contact_button">Envoyer</button>
+        <button class="contact_button" type="submit">Envoyer</button>
       </form>
     </div>
   </section>
@@ -72,7 +72,7 @@
       <!-- <div class="img_box_container"> -->
       <img src="assets/icons/closeLightBox.svg" id="close_light_box" alt="Bouton de fermeture" class="close_button" role="button" tabindex="0" />
       <div>
-        <button class="fa-solid fa-chevron-left" role="button" tabindex="0"></button>
+        <button class="fa-solid fa-chevron-left" role="button" tabindex="0" aria-label="Précédent"></button>
         <p class="sr-only">Précédent</p>
       </div>
       <div class="container_title">
@@ -80,7 +80,7 @@
         <h1 id="lightBoxTitle"></h1>
       </div>
       <div>
-        <button class="fa-solid fa-chevron-right" role="button" tabindex="0"></button>
+        <button class="fa-solid fa-chevron-right" role="button" tabindex="0" aria-label="Suivant"></button>
         <p class="sr-only">Suivant</p>
       </div>
 

@@ -42,10 +42,12 @@ export class ContactForm extends Modal {
         checkForm = false;
 
         input.classList.add("wrong");
+        input.setAttribute("aria-invalid", "true");
       } else {
         checkForm = true;
 
         input.classList.remove("wrong");
+        input.setAttribute("aria-invalid", "false");
 
         this._datas.push(input.value);
       }
