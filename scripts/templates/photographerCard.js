@@ -1,7 +1,7 @@
 /**
  * Create photographer card from photographer Data
  */
-export class PhotographerTemplate {
+export default class PhotographerTemplate {
   constructor(photographer) {
     this._photographer = photographer;
   }

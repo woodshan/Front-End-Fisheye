@@ -12,6 +12,7 @@
 
 <body>
   <div class="container" aria-hidden="false">
+    <!-- HEADER -->
     <header role="banner">
       <nav role=”navigation”>
         <a href="index.html" aria-label="Lien vers la page d'accueil">
@@ -19,17 +20,21 @@
         </a>
       </nav>
     </header>
+    <!-- MAIN -->
     <main id="main">
+      <!-- PHOTOGRAPHER BANNER -->
       <section class="photograph-header">
-        <button class="contact_button">Contactez-moi</button>
+        <button class="contact_button" aria-label="Ouvrir le formulaire de contact">Contactez-moi</button>
       </section>
+      <!-- MEDIAS SECTION -->
       <section class="media-section">
         <!-- FILTER -->
         <div class="sort">
           <p class="sort-by">Trier par</p>
-          <div class="select" role="listbox" aria-haspopup="true" aria-expanded="false" aria-label="Ouvrir le menu de tri">
-                <button value="Popularité" aria-label="Trier par Popularité" aria-hidden="false" tabindex="0">Popularité<em
-                  class="fa-solid fa-chevron-down arrow-down"></em></button>
+          <div class="select">
+            <button value="Popularité" aria-hidden="false" tabindex="0" role="listbox" aria-haspopup="true"
+              aria-expanded="false" aria-label="Ouvrir le menu de tri, trier par Popularité">Popularité<em
+                class="fa-solid fa-chevron-down arrow-down"></em></button>
             <button value="Date" aria-label="Trier par Date" aria-hidden="true" class="hidden"
               tabindex="0">Date</button>
             <button value="Titre" aria-label="Trier par Titre" aria-hidden="true" class="hidden"
@@ -48,7 +53,8 @@
     <div class="modal" aria-hidden="true" role="dialog" aria-describedby="modalTitle">
       <header>
         <h1 id="modalTitle">Contactez-moi<br></h1>
-        <img src="assets/icons/closeModal.svg" alt="Bouton de fermeture" class="close_button" role="button" tabindex="0" />
+        <img src="assets/icons/closeModal.svg" alt="Bouton de fermeture" class="close_button" role="button"
+          tabindex="0" />
       </header>
       <form>
         <div>
@@ -62,29 +68,26 @@
           <textarea id="message" required aria-required="true" placeholder="Écrivez votre Message"></textarea>
         </div>
         <p class="error-msg hidden">Veuillez remplir tous les champs.</p>
-        <button class="contact_button" type="submit">Envoyer</button>
+        <button class="contact_button" aria-label="Envoyer mon formulaire" type="submit">Envoyer</button>
       </form>
     </div>
   </section>
   <!-- LIGHT BOX -->
   <section id="light_box" class="hidden">
     <div class="container_light_box" aria-hidden="true" role="dialog" aria-describedby="lightBoxTitle">
-      <!-- <div class="img_box_container"> -->
-      <img src="assets/icons/closeLightBox.svg" id="close_light_box" alt="Bouton de fermeture" class="close_button" role="button" tabindex="0" />
+      <img src="assets/icons/closeLightBox.svg" id="close_light_box" alt="Bouton de fermeture" class="close_button"
+        role="button" tabindex="0" />
       <div>
         <button class="fa-solid fa-chevron-left" role="button" tabindex="0" aria-label="Précédent"></button>
         <p class="sr-only">Précédent</p>
       </div>
       <div class="container_title">
-        <!-- <img src="" alt="" class="img_light_box"> -->
         <h1 id="lightBoxTitle"></h1>
       </div>
       <div>
         <button class="fa-solid fa-chevron-right" role="button" tabindex="0" aria-label="Suivant"></button>
         <p class="sr-only">Suivant</p>
       </div>
-
-      <!-- </div> -->
     </div>
   </section>
   <script src="/scripts/pages/photographerPage.js" type="module"></script>

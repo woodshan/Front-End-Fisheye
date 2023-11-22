@@ -1,4 +1,4 @@
-export class Modal {
+export default class Modal {
   constructor() {
     this.$container = document.querySelector(".container");
     this.$btnClose = document.querySelectorAll(".close_button");

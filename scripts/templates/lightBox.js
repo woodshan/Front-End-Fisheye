@@ -1,5 +1,6 @@
-import { Modal } from "./modal.js";
-export class LightBox extends Modal {
+import Modal from "./modal.js";
+
+export default class LightBox extends Modal {
   constructor(mediaData) {
     super();
     this._media = mediaData;
@@ -62,6 +63,10 @@ export class LightBox extends Modal {
       if (e.keyCode == 13) {
         this.next();
       }
+
+      if(e.keyCode == 32) {
+        e.preventDefault();
+      }
     });
 
     this.$btnPrevious.addEventListener("click", () => {
@@ -72,6 +77,10 @@ export class LightBox extends Modal {
       if (e.keyCode == 13) {
         this.previous();
       }
+
+      if(e.keyCode == 32) {
+        e.preventDefault();
+      }
     });
   }
 
@@ -80,7 +89,7 @@ export class LightBox extends Modal {
       this.$modal.querySelector(".thumbnail").remove();
     }
 
-    this.$modal.querySelector(".container_title").prepend(mediaData.thumbnail);
+    this.$modal.querySelector(".container_title").prepend(mediaData.content == undefined ? mediaData.thumbnail : mediaData.content);
     this.$modal.querySelector("h1").innerHTML = "";
 
     this.displayTitle(this.$modal, mediaData._title);

@@ -1,16 +1,36 @@
-/* MODAL */
-#contact_modal {
-    z-index: 2;
-    position:fixed;
-    top: 0;
-    width: 100%;
-    height: 100%;
+/* HIDDEN */
+.hidden {
+    display:none !important;
+}
+
+
+/* PHOTOGRAPHER HEADER */
+.photograph-header {
+    background-color: #FAFAFA;
+    height: 300px;
+    margin: 0 100px;
+    padding: 0 40px;
     display:flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    max-width: none;
-    background-color: rgba(255, 255, 255, 0.506);
-    overflow-y: auto;
+}
+
+.photograph-header h1 {
+    color: #D3573C;
+    font-size: 4em;
+    margin:0;
+    font-weight: 400;
+}
+
+.photograph-header h2, .media-section p {
+    color: #901C1C;
+    font-size: 1.5em;
+    margin:0;
+    font-weight: 400;
+}
+
+.photograph-header p {
+    font-size: 1.1em;
 }
 
 .contact_button {
@@ -26,6 +46,36 @@
     border-radius: 5px;
     cursor: pointer;
     transition: all 0.3s;
+}
+
+.photograph-header .contact_button:focus,  .photograph-header .contact_button:hover {
+    background-color: #DB8876;
+    color: black;
+}
+
+.photograph-header img {
+    order: 3;
+    height: 200px;
+    width: 200px;
+    border-radius: 100px;   
+    object-fit: cover;
+    overflow-clip-margin: unset;
+}
+
+
+/* MODAL CONTACT*/
+#contact_modal {
+    z-index: 2;
+    position:fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    max-width: none;
+    background-color: rgba(255, 255, 255, 0.506);
+    overflow-y: auto;
 }
 
 .modal {
@@ -113,6 +163,7 @@ form textarea {
     transform: scale(1.05);
 }
 
+
 /* LIGHT BOX */
 #light_box {
     z-index: 2;
@@ -125,7 +176,7 @@ form textarea {
     align-items: center;
     flex-direction: column;
     padding: 15px 0;
-    background-color: rgba(255, 255, 255, 0.68);
+    background-color: rgb(255, 255, 255);
     overflow-y: auto;
 }
 
@@ -170,22 +221,8 @@ form textarea {
     width: 100%;
 }
 
-/* MODIFICATION */
-.photograph-header {
-    background-color: #FAFAFA;
-    height: 300px;
-    margin: 0 100px;
-    padding: 0 40px;
-    display:flex;
-    justify-content: space-between;
-    align-items: center;
-}
 
-.photograph-header .contact_button:focus,  .photograph-header .contact_button:hover {
-    background-color: #DB8876;
-    color: black;
-}
-
+/* RATE CONTAINER */
 .rate-container {
     position: fixed;
     bottom: 0;
@@ -209,40 +246,30 @@ form textarea {
     margin-left: 5px;
 }
 
-.photograph-header h1 {
-    color: #D3573C;
-    font-size: 4em;
-    margin:0;
-    font-weight: 400;
-}
 
-.photograph-header h2, .media-section p {
-    color: #901C1C;
-    font-size: 1.5em;
-    margin:0;
-    font-weight: 400;
-}
-
-.photograph-header p {
-    font-size: 1.1em;
-}
-
-.photograph-header img {
-    order: 3;
-    height: 200px;
-    width: 200px;
-    border-radius: 100px;   
-    object-fit: cover;
-    overflow-clip-margin: unset;
-}
-
+/* MEDIAS SECTION */
 .media-section {
     margin: 80px 100px;
 }
 
+.media-section button {
+    background-color:transparent;
+    color:white;
+    border: none;
+    outline:none;
+    padding: 15px;
+    font-weight: 700;
+    font-size: 0.9em;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    cursor:pointer;
+}
+
+/* FILTER */
 .media-section .sort {
     display:flex;
-    /* gap: 30px; */
     position:relative;
 }
 
@@ -260,30 +287,6 @@ form textarea {
     z-index: 1;
     left: 100px;
     top: -10px;
-}
-
-.select button:focus, .select button:hover {
-    border: black solid 2px;
-    border-radius: 5px;
-}
-
-.hidden {
-    display:none !important;
-}
-
-.media-section button {
-    background-color:transparent;
-    color:white;
-    border: none;
-    outline:none;
-    padding: 15px;
-    font-weight: 700;
-    font-size: 0.9em;
-    display:flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    cursor:pointer;
 }
 
 .select button:nth-child(2) {
@@ -304,18 +307,14 @@ form textarea {
     transform:rotateZ(180deg);
 }
 
-/* .wrapper {
-    display:grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-column-gap: 75px;
-    margin-top: 20px;
-} */
+.select button:focus, .select button:hover {
+    outline: black solid 1px;
+    border-radius: 5px;
+    background-color: #DB8876;
+    color:black;
+}
 
-/* .media-section article {
-    margin: 20px 0;
-    width: 350px;
-} */
-
+/* MEDIA CARDS */
 .media_cards_list {
     display:grid;
     grid-template-columns: 1fr 1fr 1fr;

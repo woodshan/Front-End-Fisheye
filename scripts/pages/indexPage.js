@@ -1,18 +1,23 @@
 import Api from "../api/api.js";
-import { PhotographerTemplate } from "../templates/photographerCard.js";
-import { Photographer } from "../models/Photographer.js";
+import PhotographerTemplate from "../templates/photographerCard.js";
+import Photographer from "../models/Photographer.js";
 
 /**
- * Display Home page from photographers data
+ * HOME PAGE
  */
 class Index {
   constructor() {
+    // Get dom elements
     this.$photographersSection = document.querySelector(
       ".photographer_section"
     );
+
     this.api = new Api("../../data/photographers.json");
   }
 
+  /**
+   * Get photographer data & display photographer cards
+   */
   async main() {
     const api = new Api("../../data/photographers.json");
     const data = await api.getData();

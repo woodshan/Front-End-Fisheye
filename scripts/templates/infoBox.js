@@ -1,7 +1,7 @@
-import { Media } from "../models/Media.js";
-import { Photographer } from "../models/Photographer.js";
+import Media from "../models/Media.js";
+import Photographer from "../models/Photographer.js";
 
-export class InfoBox {
+export default class InfoBox {
     constructor(id, data) {
         this._id = id;
         this._media = data.media.filter(media => media.photographerId == this._id);

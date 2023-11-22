@@ -1,4 +1,4 @@
-export class MediaCard {
+export default class MediaCard {
   constructor(media, likeSubject) {
     this._media = media;
     this._likeSubject = likeSubject;
@@ -17,7 +17,7 @@ export class MediaCard {
 
     article.setAttribute("data-id", this._media._id);
     link.setAttribute("href", "#");
-    link.setAttribute("aria-label", `Ouvrir ${this._media.title}`);
+    link.setAttribute("aria-label", `Afficher le media ${this._media.title}`);
     link.setAttribute("class", "media_card");
     container.setAttribute("class", "container-desc");
     containerLike.setAttribute("class", "container-like");
