@@ -4,18 +4,23 @@ export default class MediaCard {
     this._likeSubject = likeSubject;
   }
 
+  /**
+   * Create media card using media data
+   * @returns {HTMLElement}
+   */
   createMediaCard() {
-    const article = document.createElement("li");
+    // Create dom element
+    const list = document.createElement("li");
     const link = document.createElement("a");
     const container = document.createElement("div");
     const title = document.createElement("p");
     const containerLike = document.createElement("div");
     const numberLikes = document.createElement("p");
-    // const like = document.createElement("i");
     const like = document.createElement("button");
     const srOnly = document.createElement("p");
 
-    article.setAttribute("data-id", this._media._id);
+    // Set attribute (id, accessibility,...)
+    list.setAttribute("data-id", this._media._id);
     link.setAttribute("href", "#");
     link.setAttribute("aria-label", `Afficher le media ${this._media.title}`);
     link.setAttribute("class", "media_card");
@@ -31,9 +36,10 @@ export default class MediaCard {
     numberLikes.innerText = this._media.likes;
     srOnly.innerText = "J'aime";
 
-    article.appendChild(link);
+    // Display elements in dom
+    list.appendChild(link);
     link.appendChild(this._media.thumbnail);
-    article.appendChild(container);
+    list.appendChild(container);
     container.appendChild(title);
     container.appendChild(containerLike);
     containerLike.appendChild(numberLikes);
@@ -44,24 +50,40 @@ export default class MediaCard {
       this.handleLikeButton(like, numberLikes);
     });
 
-    return article;
+    return list;
   }
 
+  /**
+   * Handle like/unlike
+   * @param {HTMLElement} like
+   * @param {HTMLElement} numberLikes
+   */
   handleLikeButton(like, numberLikes) {
-    const that = this; 
+    const that = this;
 
+    // Unlike case
     if (like.classList.contains("liked")) {
       like.classList.remove("liked");
+      // Notify observer
       that._likeSubject.fire("DEC", numberLikes);
+
+      // Accessibility
       numberLikes.parentElement.querySelector(".sr-only").innerText = "J'aime";
       like.setAttribute("aria-label", "J'aime");
+
+      // Like case
     } else {
       like.classList.add("liked");
+      // Notify observer
       that._likeSubject.fire("INC", numberLikes);
-      numberLikes.parentElement.querySelector(".sr-only").innerText = "Je n'aime pas";
+
+      // Accessibility
+      numberLikes.parentElement.querySelector(".sr-only").innerText =
+        "Je n'aime pas";
       like.setAttribute("aria-label", "Je n'aime pas");
     }
 
+    // Set likes in media(object)
     this._media.likes = Number(numberLikes.innerText);
   }
 }
