@@ -45,6 +45,13 @@ class PhotographerPage {
 
     const photographerName = photographer.name;
 
+    // Display info box using data and url id
+    const infoBox = new InfoBox(this._id, data);
+    this.$main.appendChild(infoBox.createRateCard());
+
+    // Handle contact form modal
+    new ContactForm(photographerName);
+
     // Create empty array to sort media cards
     let mediaList = [];
 
@@ -54,13 +61,6 @@ class PhotographerPage {
 
       mediaList.push(mediaFactory);
     });
-
-    // Display info box using data and url id
-    const infoBox = new InfoBox(this._id, data);
-    this.$main.appendChild(infoBox.createRateCard());
-
-    // Handle contact form modal
-    new ContactForm(photographerName);
 
     // Handle sort filter
     new Sort(mediaList);
