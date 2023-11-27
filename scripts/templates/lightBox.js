@@ -1,5 +1,8 @@
 import Modal from "./modal.js";
 
+/**
+ * Modal Light box
+ */
 export default class LightBox extends Modal {
   constructor(mediaData) {
     super();
@@ -8,11 +11,6 @@ export default class LightBox extends Modal {
 
     // Current media's index
     this._currentIndex = 0;
-
-    // Save setTimeout
-    this._timeoutID;
-    // Is autoscrolling paused
-    this._isPause = false;
 
     // Select dom elements
     this.$modal = document.querySelector(".container_light_box");
@@ -38,11 +36,6 @@ export default class LightBox extends Modal {
 
         // Set current index using media's index
         this._currentIndex = this._media.indexOf(media);
-
-        // Automatic caroussel scroll 5s
-        if (!this._isPause) {
-          this.automaticScroll();
-        }
       });
     });
 
@@ -58,20 +51,6 @@ export default class LightBox extends Modal {
       // Previous arrow key
       if (e.keyCode == 37) {
         this.previous();
-      }
-
-      // Put/remove pause autoscrolling on space key
-      if (e.keyCode == 32) {
-        e.preventDefault();
-        if (this._isPause) {
-          this.automaticScroll();
-          // Remove pause
-          this._isPause = false;
-        } else {
-          clearTimeout(this._timeoutID);
-          // Set pause
-          this._isPause = true;
-        }
       }
     });
 
@@ -121,11 +100,6 @@ export default class LightBox extends Modal {
 
     // Show media in order
     this.displayLightBox(this._media[this._currentIndex]);
-
-    // Not in pause = autoscrolling
-    if (!this._isPause) {
-      this.automaticScroll();
-    }
   }
 
   /**
@@ -143,16 +117,5 @@ export default class LightBox extends Modal {
 
     // Show media in order
     this.displayLightBox(this._media[this._currentIndex]);
-  }
-
-  // Automatic caroussel scroll 5s
-  automaticScroll() {
-    // Clear old timeout
-    clearTimeout(this._timeoutID);
-
-    // Set timeout 5s
-    this._timeoutID = setTimeout(() => {
-      this.next();
-    }, 5000);
   }
 }

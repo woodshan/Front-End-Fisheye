@@ -1,5 +1,8 @@
 import Modal from "./modal.js";
 
+/**
+ * Modal contact form
+ */
 export default class ContactForm extends Modal {
   constructor(photographerName) {
     super();
