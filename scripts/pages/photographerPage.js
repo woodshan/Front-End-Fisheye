@@ -14,7 +14,7 @@ class PhotographerPage {
     // Get url id
     this._url = new URL(document.location).searchParams;
     this._id = Number(this._url.get("id"));
-    this.api = new Api("data/photographers.json");
+    this._api = new Api("data/photographers.json");
 
     // Get dom elements
     this.$photographerHeader = document.querySelector(".photograph-header");
@@ -24,7 +24,7 @@ class PhotographerPage {
 
   async main() {
     // Get data from api
-    const data = await this.api.getData();
+    const data = await this._api.getData();
 
     // Get photographer data
     const photographerData = data.photographers.find(
