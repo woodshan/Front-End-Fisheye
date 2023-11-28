@@ -14,7 +14,7 @@ class PhotographerPage {
     // Get url id
     this._url = new URL(document.location).searchParams;
     this._id = Number(this._url.get("id"));
-    this.api = new Api("../../data/photographers.json");
+    this.api = new Api("data/photographers.json");
 
     // Get dom elements
     this.$photographerHeader = document.querySelector(".photograph-header");

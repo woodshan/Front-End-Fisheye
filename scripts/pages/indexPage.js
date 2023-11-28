@@ -12,14 +12,14 @@ class Index {
       ".photographer_section"
     );
 
-    this.api = new Api("../../data/photographers.json");
+    this.api = new Api("data/photographers.json");
   }
 
   /**
    * Get photographer data & display photographer cards
    */
   async main() {
-    const api = new Api("../../data/photographers.json");
+    const api = new Api("data/photographers.json");
     const data = await api.getData();
     const photographers = data.photographers;
 
