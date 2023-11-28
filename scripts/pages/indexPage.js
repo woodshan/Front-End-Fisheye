@@ -19,8 +19,7 @@ class Index {
    * Get photographer data & display photographer cards
    */
   async main() {
-    const api = new Api("data/photographers.json");
-    const data = await api.getData();
+    const data = await this.api.getData();
     const photographers = data.photographers;
 
     photographers.forEach((photographer) => {
